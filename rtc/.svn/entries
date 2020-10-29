@@ -1,0 +1,208 @@
+8
+
+dir
+329
+file:///data/geophys/iprt/svn/kimura/rtc/luisch/rtc
+file:///data/geophys/iprt/svn/kimura
+
+
+
+2009-11-05T09:07:22.974132Z
+103
+kimura
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+9e0f1110-fc61-0410-85ca-e7afc86062bc
+
+planet
+dir
+
+makefile.vc
+file
+
+
+
+
+2010-06-21T01:47:28.000000Z
+1a323d584abbba83c564c86371a0edd6
+2009-11-05T09:07:22.974132Z
+103
+kimura
+
+makedbg.gcc
+file
+
+
+
+
+2010-06-21T01:47:28.000000Z
+9aff4cd88a1d9b4bcd4cea658b936de6
+2009-11-05T09:07:22.974132Z
+103
+kimura
+
+libraytrace.dsp
+file
+
+
+
+
+2010-06-21T01:47:28.000000Z
+b2465e2806ccb740447e6a0de75f117d
+2009-11-05T09:07:22.974132Z
+103
+kimura
+
+model.h
+file
+
+
+
+
+2010-06-21T01:47:28.000000Z
+f91eaaa069a4bfa76ba7c8a8dc85f478
+2009-11-05T09:07:22.974132Z
+103
+kimura
+
+src
+dir
+
+config.h
+file
+
+
+
+
+2010-06-21T01:47:28.000000Z
+5abe244398664ff087fbeec55a27b5ae
+2009-11-05T09:07:22.974132Z
+103
+kimura
+
+libraytrace.dsw
+file
+
+
+
+
+2010-06-21T01:47:28.000000Z
+399d0f6db7d0725c460d996cb41f0a05
+2009-11-05T09:07:22.974132Z
+103
+kimura
+
+iccmath.hpp
+file
+
+
+
+
+2010-06-21T01:47:28.000000Z
+ce7681ae1485f767023b2330e00fc5ae
+2009-11-05T09:07:22.974132Z
+103
+kimura
+
+reference
+dir
+
+common.mak
+file
+
+
+
+
+2010-06-21T01:47:28.000000Z
+0a9d1e04cd861b7dc39267b347049015
+2009-11-05T09:07:22.974132Z
+103
+kimura
+
+tools
+dir
+
+model
+dir
+
+raytrace.h
+file
+
+
+
+
+2010-06-21T01:47:28.000000Z
+3eb25e0707a3ba3fc427dc42222da451
+2009-11-05T09:07:22.974132Z
+103
+kimura
+
+lib
+dir
+
+makefile.gcc
+file
+
+
+
+
+2010-06-21T01:47:28.000000Z
+6a06a5cc2f1191773a03c532bfc432d2
+2009-11-05T09:07:22.974132Z
+103
+kimura
+
+planet.h
+file
+
+
+
+
+2010-06-21T01:47:28.000000Z
+353a0d9180783f9baa976534500fd8dd
+2009-11-05T09:07:22.974132Z
+103
+kimura
+
+makefile.icc
+file
+
+
+
+
+2010-06-21T01:47:28.000000Z
+668a11302a6d010742b63ea78dc74560
+2009-11-05T09:07:22.974132Z
+103
+kimura
+
+template
+dir
+
+testing
+dir
+
+makefile
+file
+
+
+
+
+2010-06-21T01:47:28.000000Z
+6a06a5cc2f1191773a03c532bfc432d2
+2009-11-05T09:07:22.974132Z
+103
+kimura
+
