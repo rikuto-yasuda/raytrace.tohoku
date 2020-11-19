@@ -24,16 +24,26 @@ rtc::basic_magnet_model& getMagnetModel( const testing_env* env )
 {
 	// 磁場モデルのインスタンスはここで実体化する
 	static rtc::model::magnet::null_magnet null;
+	static rtc::model::magnet::test_null_magnet test_null;
 	static rtc::model::magnet::simple simple;
+	static rtc::model::magnet::test_simple test_simple;
 	
 	switch( env->magnet_model )
 	{
 	case testing_env::model_null:
 		return null;
 
+	case testing_env::model_test_null:
+		return test_null;
+
 	case testing_env::model_simple:
 		return simple;
 		
+
+	case testing_env::model_test_simple:
+		return test_simple;
+		
+
 	case testing_env::model_igrf:
 		{
 			static rtc::model::magnet::IGRF igrf;
@@ -69,7 +79,9 @@ rtc::basic_plasma_model& getPlasmaModel( const testing_env* env )
 {
 	// プラズマモデルのインスタンスはここで実体化する
 	static rtc::model::plasma::null_plasma  null;
+	static rtc::model::plasma::test_null_plasma  test_null;
 	static rtc::model::plasma::simple       simple;
+	static rtc::model::plasma::test_simple       test_simple;
 	static rtc::model::plasma::sato_earth   sato;
 	static rtc::model::plasma::nsumei_earth nsumei( 2.0/*Kp*/ );
 	static rtc::model::plasma::DevineGarrett dg;
@@ -79,8 +91,14 @@ rtc::basic_plasma_model& getPlasmaModel( const testing_env* env )
 	case testing_env::model_null:
 		return null;
 
+	case testing_env::model_test_null:
+		return test_null;
+
 	case testing_env::model_simple:
 		return simple;
+
+	case testing_env::model_test_simple:
+		return test_simple;
 
 	case testing_env::model_sato_earth:
 		return sato;

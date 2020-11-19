@@ -1,0 +1,20 @@
+# (mlat,mlt,h) = ( 70, 23, 1.1e+08 )
+# frequency    = 30000[Hz]
+# wave mode    = LO
+# step length  = 1e+08[m]
+# ray length   = 7.1e+08[m]
+# pitch angle  = 1.5708[rad]
+# round div    = 32
+# segment      = 30
+# precision    = 3.74e-05
+# step count   = 5000
+# back trace   = false
+# parallel     = false
+# time range   = [1]-[1e-06]
+# plasma model = dg
+# magnet model = unknown
+# planet       = jupiter
+# date         = 2000/1/1 0:0.0
+# testing start at : Mon Nov 16 18:06:55 2020
+
+

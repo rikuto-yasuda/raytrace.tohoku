@@ -363,9 +363,17 @@ string  [A-Za-z_][A-Za-z0-9_]*
 		/* ï°êîÇÃÉÇÅ[ÉhÇ™éwíËÇ≥ÇÍÇƒÇ¢ÇÈ */
 		g_env.plasma_model = testing_env::model_error;
 	}
-    else if( str == "simple" )
+	else if( str == "test_null" )
+	{
+		g_env.plasma_model = testing_env::model_error;
+	}
+	else if( str == "simple" )
 	{
 		g_env.plasma_model = testing_env::model_simple;
+	}
+	else if( str == "test_simple" )
+	{
+		g_env.plasma_model = testing_env::model_test_simple;
 	}
 	else if( str == "sato" )
 	{
@@ -398,6 +406,10 @@ string  [A-Za-z_][A-Za-z0-9_]*
 	{
 		g_env.magnet_model = testing_env::model_simple;
 	}
+    else if( str == "test_simple" )
+	{
+		g_env.magnet_model = testing_env::model_test_simple;
+	}
 	else if( str == "igrf" )
 	{
 		g_env.magnet_model = testing_env::model_igrf;
@@ -411,6 +423,10 @@ string  [A-Za-z_][A-Za-z0-9_]*
 		g_env.magnet_model = testing_env::model_vip4;
 	}
 	else if( str != "null" )
+	{
+		g_env.magnet_model = testing_env::model_error;
+	}
+	else if( str != "test_null" )
 	{
 		g_env.magnet_model = testing_env::model_error;
 	}

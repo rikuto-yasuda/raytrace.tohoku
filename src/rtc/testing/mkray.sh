@@ -15,8 +15,8 @@ SY=23           # (source.y|MLT)
 SZ=1.1e8        # (source.z|altitude)
 
 ## モデルを選択 ##
-PLASMA="devine_garrett"    #(null|simple|sato|nsumei|devine_garrett)
-MAGNET="vip4"              #(null|simple|igrf|igrf4|vip4)
+PLASMA="test_simple"    #(null|test_null|simple|test_simple|sato|nsumei|devine_garrett)
+MAGNET="simple"              #(null|test_null|simple|test_simple|igrf|igrf4|vip4)
 
 ## 宇宙の時刻を指定 ##
 DATE="2000/1/1"  # year/month/day

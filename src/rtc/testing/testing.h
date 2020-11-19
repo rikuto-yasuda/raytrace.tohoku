@@ -58,7 +58,9 @@ public:
 
 	enum model {
 		model_null,
+		model_test_null,
 		model_simple,
+		model_test_simple,
 		model_sato_earth,
 		model_nsumei_earth,
 		model_devine_garrett,
@@ -86,6 +88,9 @@ public:
 		{
 		case model_simple:
 			return "simple";
+
+		case model_test_simple:
+			return "test_simple";
 
 		case model_sato_earth:
 			return "sato";
