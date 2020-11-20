@@ -15,7 +15,7 @@
 # magnet model = simple
 # planet       = jupiter
 # date         = 2000/1/1 0:0.0
-# testing start at : Thu Nov 19 14:37:20 2020
+# testing start at : Fri Nov 20 18:17:15 2020
 
 
 # cavity no.0#####
@@ -1115,5 +1115,5 @@
 0.309376 -1.94235 0.76443 1.389 -4.10355e-12 3.03874e-12 -4.31489e-12
 0.32 -1.96311 0.779898 1.36727 -4.09667e-12 3.06941e-12 -4.26029e-12
 
-# testing is normal end at : Thu Nov 19 14:37:26 2020
+# testing is normal end at : Fri Nov 20 18:17:20 2020
 
