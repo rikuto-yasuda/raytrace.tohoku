@@ -1744,7 +1744,7 @@ YY_RULE_SETUP
 	}
 	else if( str == "test_null" )
 	{
-		g_env.plasma_model = testing_env::model_test_null;
+		g_env.plasma_model = testing_env::model_error;
 	}
 	else if( str == "simple" )
 	{
@@ -1784,10 +1784,6 @@ YY_RULE_SETUP
 		/* ï°êîÇÃÉÇÅ[ÉhÇ™éwíËÇ≥ÇÍÇƒÇ¢ÇÈ */
 		g_env.magnet_model = testing_env::model_error;
 	}
-	else if( str == "test_null" )
-	{
-		g_env.magnet_model = testing_env::model_test_null;
-	}
     else if( str == "simple" )
 	{
 		g_env.magnet_model = testing_env::model_simple;
@@ -1812,6 +1808,10 @@ YY_RULE_SETUP
 	{
 		g_env.magnet_model = testing_env::model_error;
 	}
+	else if( str != "test_null" )
+	{
+		g_env.magnet_model = testing_env::model_error;
+	}
 	BEGIN 0;
 }
 	YY_BREAK
@@ -1827,19 +1827,18 @@ YY_RULE_SETUP
 	else if( str == "jupiter" ){
 		g_env.planet = testing_env::planet_jupiter;
 	}
-	else if( str == "benchmark" )
+	else if( str == "benchmark" ){
 		g_env.planet = testing_env::planet_benchmark;
 	}
-
 	BEGIN 0;
 }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 449 "cmdline.l"
+#line 451 "cmdline.l"
 ECHO;
 	YY_BREAK
-#line 1840 "lex.cmd.cpp"
+#line 1842 "lex.cmd.cpp"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(SOURCE_COORD):
 case YY_STATE_EOF(SOURCE_POS_X):
@@ -2858,7 +2857,7 @@ void cmdfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 449 "cmdline.l"
+#line 451 "cmdline.l"
 
 
 int cmdwrap(){ return 1; }

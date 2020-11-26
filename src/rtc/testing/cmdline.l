@@ -445,7 +445,6 @@ string  [A-Za-z_][A-Za-z0-9_]*
 	else if( str == "benchmark" ){
 		g_env.planet = testing_env::planet_benchmark;
 	}
-
 	BEGIN 0;
 }
 

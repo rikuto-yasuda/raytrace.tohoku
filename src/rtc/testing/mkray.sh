@@ -1,4 +1,4 @@
-#!/bin/bash
+
 RAYTRACE='./testing'
 
 
@@ -16,7 +16,8 @@ SZ=1.1e8        # (source.z|altitude)
 
 ## モデルを選択 ##
 PLASMA="test_simple"    #(null|test_null|simple|test_simple|sato|nsumei|devine_garrett)
-MAGNET="simple"              #(null|test_null|simple|test_simple|igrf|igrf4|vip4)
+MAGNET="simple"         #(null|test_null|simple|test_simple|igrf|igrf4|vip4)
+PLANET="jupiter"        #(earth(?)|jupiter|benchmark)
 
 ## 宇宙の時刻を指定 ##
 DATE="2000/1/1"  # year/month/day
@@ -46,7 +47,7 @@ CAVITY_LIST=(                      \
 ) # cavityの数だけオプションを指定
 
 ## 出力ファイル名を指定する。
-OUTPUT="ray-P${PLASMA}-M${MAGNET}-${MODE}"
+OUTPUT="ray-P${PLASMA}-M${MAGNET}-${PLANET}-${MODE}"
 LOG="${0}.log"
 
 ## 終了時にメールを送る ##
@@ -85,8 +86,7 @@ send_mail()
 	  --precision    ${PRECISION}   \
 	  --pitch        ${PITCH}       \
 	  --ray-path-segment ${SEGMENT} \
-	  --planet jupiter              \
-	  --planet benchmark            \
+	  --planet       ${PLANET}      \
 	  ${CAVITY_LIST}                \
 	  2>&1                          \
 	  1> ${OUTPUT}                  \
