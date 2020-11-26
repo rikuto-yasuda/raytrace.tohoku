@@ -10,5 +10,6 @@
 
 #include "planet/earth.h"
 #include "planet/jupiter.h"
+#include "planet/benchmark.h"
 
 #endif//RTC_RAYTRACE_PLANETS_H

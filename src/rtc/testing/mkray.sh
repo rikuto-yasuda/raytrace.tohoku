@@ -86,6 +86,7 @@ send_mail()
 	  --pitch        ${PITCH}       \
 	  --ray-path-segment ${SEGMENT} \
 	  --planet jupiter              \
+	  --planet benchmark            \
 	  ${CAVITY_LIST}                \
 	  2>&1                          \
 	  1> ${OUTPUT}                  \

@@ -73,6 +73,7 @@ public:
 	enum planet_tag {
 		planet_earth,
 		planet_jupiter,
+		planet_benchmark,
 		planet_error
 	} planet;
 
@@ -123,6 +124,9 @@ public:
 
 		case planet_jupiter:
 			return "jupiter";
+
+		case planet_benchmark:
+			return "benchmark";
 
 		default:
 			return "unknown";

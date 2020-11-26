@@ -137,6 +137,11 @@ rtc::basic_planet& getPlanet(
 			static rtc::planet::jupiter e(m,p);
 			return e;
 		}
+	case testing_env::planet_benchmark:
+		{
+			static rtc::planet::benchmark e(m,p);
+			return e;
+		}
 	default:
 		//error
 		throw std::runtime_error(

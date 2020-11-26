@@ -6,6 +6,7 @@ VPATH     = $(OBJ_PATH)
 SRC = \
     earth.cpp    \
 	jupiter.cpp  \
+	benchmark.cpp  \
 
 
 OBJ = $(SRC:%.cpp=$(OBJ_PATH)/%$(OBJECT_EXP))

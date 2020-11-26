@@ -1827,6 +1827,9 @@ YY_RULE_SETUP
 	else if( str == "jupiter" ){
 		g_env.planet = testing_env::planet_jupiter;
 	}
+	else if( str == "benchmark" )
+		g_env.planet = testing_env::planet_benchmark;
+	}
 
 	BEGIN 0;
 }
