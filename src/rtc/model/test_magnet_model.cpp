@@ -23,7 +23,7 @@ matrix magnet::test_null_magnet::getDerivativeB( const vector& pos ) const
 }
 
 // test_simple model //////////////////////////////////////////////////////
-magnet::test_simple::test_simple()
+/*magnet::test_simple::test_simple()                            //////////////本来のシンプルモデル（双極子磁場）
 {}
 
 vector magnet::test_simple::getField( const vector& pos ) const
@@ -43,7 +43,23 @@ vector magnet::test_simple::getField( const vector& pos ) const
 			)
 	);
 }
+*/
+magnet::test_simple::test_simple()
 
+{}
+
+vector magnet::test_simple::getField      ( const vector& pos ) const        //////////////追加したシンプルモデル（z軸方向一定）
+{
+	boost::numeric::ublas::vector<double> z_vector(3);
+
+	z_vector[0] = 0.0;  //x
+	z_vector[1] = 0.0;  //y
+	z_vector[2] = 0.00000001;  //z
+
+	return z_vector ;
+}
+
+/*                                                                          ///////////////追加したシンプルモデルのためにコメントアウト
 // getFootPrint() --------------------------------
 vector magnet::test_simple::getFootPrint(
 	const vector&           sp,
@@ -81,3 +97,5 @@ vector magnet::test_simple::getEquatorPrint(
 
 	return convertToCartesian(ptr);
 }
+*/
+

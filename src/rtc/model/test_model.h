@@ -18,9 +18,11 @@ namespace magnet {
 	public:    matrix getDerivativeB( const vector& pos ) const;
 	};
 
-	// simpte model ---------------------------------------
+	// test_simpte model --------------------------------------////////もとのテストモデルは双極子磁場であった
 	// 単純な磁場モデルを記述。
 	// このモデルでは、磁場は単純な双極子磁場である。
+
+/*
 	class test_simple : public basic_magnet_model
 	{
 	public:
@@ -42,6 +44,19 @@ namespace magnet {
 
 	protected:
 		vector getField( const vector& pos ) const;
+	};
+
+}
+*/
+// test_simpte model --------------------------------------////////練習用（z軸方向に一定の磁場を作る）
+
+	class test_simple : public basic_magnet_model
+	{
+	public:
+		test_simple();
+
+
+	protected: vector getField      ( const vector& pos ) const;
 	};
 
 } namespace plasma {

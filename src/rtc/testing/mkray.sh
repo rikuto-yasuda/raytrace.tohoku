@@ -11,12 +11,12 @@ COORD="polar"   # (euclid|polar)
 #SX=60           # (source.x|MLAT)
 SX=70           # (source.x|MLAT)
 SY=23           # (source.y|MLT)
-#SZ=2e6         # (source.z|altitude)
-SZ=1.1e8        # (source.z|altitude)
+SZ=2e6         # (source.z|altitude)
+#SZ=1.1e8        # (source.z|altitude)
 
 ## モデルを選択 ##
 PLASMA="test_simple"    #(null|test_null|simple|test_simple|sato|nsumei|devine_garrett)
-MAGNET="simple"         #(null|test_null|simple|test_simple|igrf|igrf4|vip4)
+MAGNET="test_simple"         #(null|test_null|simple|test_simple|igrf|igrf4|vip4)
 PLANET="jupiter"        #(earth(?)|jupiter|benchmark)
 
 ## 宇宙の時刻を指定 ##
