@@ -6,16 +6,21 @@ RAYTRACE='./testing'
 ## 発生源を指定 ##
 # euclid指定の場合は、惑星半径単位で。
 # polar指定の場合は、MKS単位で。
-COORD="polar"   # (euclid|polar)
-#COORD="euclid" # (euclid|polar)
+#COORD="polar"   # (euclid|polar)
+COORD="euclid" # (euclid|polar)
 #SX=60           # (source.x|MLAT)
-SX=70           # (source.x|MLAT)
-SY=23           # (source.y|MLT)
-SZ=2e6         # (source.z|altitude)
+#SX=70           # (source.x|MLAT)
+#SY=23           # (source.y|MLT)
+#SZ=2e6         # (source.z|altitude)
 #SZ=1.1e8        # (source.z|altitude)
 
+SX=3
+SY=4
+SZ=9
+
+
 ## モデルを選択 ##
-PLASMA="test_simple"    #(null|test_null|simple|test_simple|sato|nsumei|devine_garrett)
+PLASMA="simple"    #(null|test_null|simple|test_simple|sato|nsumei|devine_garrett)
 MAGNET="test_simple"         #(null|test_null|simple|test_simple|igrf|igrf4|vip4)
 PLANET="jupiter"        #(earth(?)|jupiter|benchmark)
 
@@ -25,7 +30,7 @@ TIME="0:0.0"     # hour:minutes.sec
 
 ## 波動特性を設定 ##
 #FREQ=0          # 周波数[Hz]
-FREQ=30e3       # 周波数[Hz]
+FREQ=30e6       # 周波数[Hz]
 MODE="LO"       # 波動モード(LO|RX)
 #RAY_L=1e6       # トレースする最大の光路長
 RAY_L=7.1e8     # トレースする最大の光路長

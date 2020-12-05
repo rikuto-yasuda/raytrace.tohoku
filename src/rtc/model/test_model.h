@@ -55,9 +55,20 @@ namespace magnet {
 	public:
 		test_simple();
 
+		vector getFootPrint(
+			const vector& sp,
+			double
+		) const;
 
-	protected: vector getField      ( const vector& pos ) const;
+		vector getEquatorPrint(
+			const vector& sp,
+			double
+		) const;
+
+	protected:
+		vector getField( const vector& pos ) const;
 	};
+
 
 } namespace plasma {
 

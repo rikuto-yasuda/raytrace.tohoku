@@ -1,5 +1,5 @@
 // basic_magnetic_model.cpp: basic_magnetic_model クラスのインプリメンテーション
-//
+
 //////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
 #include "test_model.h"
@@ -50,16 +50,16 @@ magnet::test_simple::test_simple()
 
 vector magnet::test_simple::getField      ( const vector& pos ) const        //////////////追加したシンプルモデル（z軸方向一定）
 {
+
 	boost::numeric::ublas::vector<double> z_vector(3);
 
-	z_vector[0] = 0.0;  //x
-	z_vector[1] = 0.0;  //y
-	z_vector[2] = 0.00000001;  //z
+	z_vector[0] = 0;  //x
+	z_vector[1] = 1e-10;  //y
+	z_vector[2] = 6e-3;  //z
 
-	return z_vector ;
+	return z_vector;
 }
 
-/*                                                                          ///////////////追加したシンプルモデルのためにコメントアウト
 // getFootPrint() --------------------------------
 vector magnet::test_simple::getFootPrint(
 	const vector&           sp,
@@ -97,5 +97,4 @@ vector magnet::test_simple::getEquatorPrint(
 
 	return convertToCartesian(ptr);
 }
-*/
 

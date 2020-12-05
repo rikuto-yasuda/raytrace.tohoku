@@ -2889,7 +2889,7 @@ testing_env* parseCmdline( int argc, char* argv[] )
 	g_env.step_count  = ~0;
 	g_env.precision   = 3.74e-4;
 	g_env.pitch_angle = 90 * (rtc::cnst::pi/180.0);
-	g_env.round_div   = 32;
+	g_env.round_div   = 1;
 	g_env.ray_segment = 100;
 
 	g_env.is_plot_startptr = true;
