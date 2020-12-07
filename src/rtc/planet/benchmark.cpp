@@ -12,7 +12,7 @@ benchmark::benchmark(
 	basic_magnet_model&   mag,        // 磁場モデルのインスタンスを指定する。
 	basic_plasma_model&  plsm         // プラズマモデルのインスタンスを指定する。
 ) : basic_planet (
-	71372.e3, // 地球半径[m]
+	71372e3, // 地球半径[m]
 	8.43e22,  // 地磁気の仮想双極子モーメント[Am^2]（北向きで正）
 	axis_info( 90.0, 0.0 ), // 磁軸の位置
 	mag,

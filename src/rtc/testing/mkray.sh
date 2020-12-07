@@ -20,7 +20,7 @@ SZ=9
 
 
 ## モデルを選択 ##
-PLASMA="simple"    #(null|test_null|simple|test_simple|sato|nsumei|devine_garrett)
+PLASMA="test_simple"    #(null|test_null|simple|test_simple|sato|nsumei|devine_garrett)
 MAGNET="test_simple"         #(null|test_null|simple|test_simple|igrf|igrf4|vip4)
 PLANET="jupiter"        #(earth(?)|jupiter|benchmark)
 

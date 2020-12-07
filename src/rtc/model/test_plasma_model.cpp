@@ -14,7 +14,8 @@ double plasma::test_null_plasma::getDensity( const vector& point ) const
 }
 
 // test_simple model //////////////////////////////////////////////////////
-double plasma::test_simple::getDensity( const vector& point ) const
+/*
+double plasma::test_simple::getDensity( const vector& point ) const       ////////////新しいプラズマモデルのためにコメントアウト
 {
 	const double Re = getCosmos().getPlanet().getRadius();
 
@@ -35,4 +36,13 @@ double plasma::test_simple::getDensity( const vector& point ) const
 		+ 1.5*Re/(inner_prod(pb,pb))
 	);
 }
+*/
 
+double plasma::test_simple::getDensity( const vector& point ) const               ///////////////新しいプラズマモデル（z軸方向にexpで減少）
+{
+	const double
+		d = std::fabs(1e8*exp(-point(2)/1e3))
+		;
+
+	return d;
+}
