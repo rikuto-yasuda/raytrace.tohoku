@@ -14,15 +14,15 @@ COORD="euclid" # (euclid|polar)
 #SZ=2e6         # (source.z|altitude)
 #SZ=1.1e8        # (source.z|altitude)
 
-SX=3
-SY=4
-SZ=9
+SX=30
+SY=0
+SZ=90
 
 
 ## モデルを選択 ##
 PLASMA="test_simple"    #(null|test_null|simple|test_simple|sato|nsumei|devine_garrett)
 MAGNET="test_simple"         #(null|test_null|simple|test_simple|igrf|igrf4|vip4)
-PLANET="jupiter"        #(earth(?)|jupiter|benchmark)
+PLANET="benchmark"        #(earth(?)|jupiter|benchmark)
 
 ## 宇宙の時刻を指定 ##
 DATE="2000/1/1"  # year/month/day
@@ -34,15 +34,15 @@ FREQ=30e6       # 周波数[Hz]
 MODE="LO"       # 波動モード(LO|RX)
 #RAY_L=1e6       # トレースする最大の光路長
 RAY_L=7.1e8     # トレースする最大の光路長
-PITCH=90        # 磁場に対するピッチ角
+PITCH=45        # 磁場に対するピッチ角
 SEGMENT=30      # 出力する光路上の点の数
 MAX_STEP=5000   # トレース・ステップの最大数
 STEP_LENGTH=1e8 # １ステップで進む最大の光路長
 #STEP_LENGTH=1e7 # １ステップで進む最大の光路長
 PRECISION="3.74e-5"  # １ステップ間のベクトル誤差の許容率
 #PRECISION="3.74e-6"  # １ステップ間のベクトル誤差の許容率
-TIME_RANGE="1:1e-6"  # １ステップ間の時間分解能レンジ
 #TIME_RANGE="1:1e-6"  # １ステップ間の時間分解能レンジ
+TIME_RANGE="1:1e-15"  # １ステップ間の時間分解能レンジ
 
 ## plasma cavity ##
 # --cavity [fp/fc]/[ilat]:[ilat range]/[mlt]:[mlt range]/[height upper]:[height bottom]
