@@ -53,7 +53,7 @@ vector magnet::test_simple::getField      ( const vector& pos ) const        ///
 
 	boost::numeric::ublas::vector<double> z_vector(3);
 
-	z_vector[0] = 111111e-6;  //x
+	z_vector[0] = 1e-7;  //x
 	z_vector[1] = 0;  //y
 	z_vector[2] = 0;  //z
 

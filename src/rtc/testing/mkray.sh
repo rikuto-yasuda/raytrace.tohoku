@@ -14,9 +14,9 @@ COORD="euclid" # (euclid|polar)
 #SZ=2e6         # (source.z|altitude)
 #SZ=1.1e8        # (source.z|altitude)
 
-SX=30
+SX=0
 SY=0
-SZ=90
+SZ=100
 
 
 ## モデルを選択 ##
