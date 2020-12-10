@@ -35,14 +35,14 @@ MODE="LO"       # 波動モード(LO|RX)
 #RAY_L=1e6       # トレースする最大の光路長
 RAY_L=7.1e8     # トレースする最大の光路長
 PITCH=45        # 磁場に対するピッチ角
-SEGMENT=30      # 出力する光路上の点の数
+SEGMENT=300     # 出力する光路上の点の数
 MAX_STEP=5000   # トレース・ステップの最大数
-STEP_LENGTH=1e8 # １ステップで進む最大の光路長
-#STEP_LENGTH=1e7 # １ステップで進む最大の光路長
+#STEP_LENGTH=1e8 # １ステップで進む最大の光路長
+STEP_LENGTH=1e3  # １ステップで進む最大の光路長
 PRECISION="3.74e-5"  # １ステップ間のベクトル誤差の許容率
 #PRECISION="3.74e-6"  # １ステップ間のベクトル誤差の許容率
 #TIME_RANGE="1:1e-6"  # １ステップ間の時間分解能レンジ
-TIME_RANGE="1:1e-15"  # １ステップ間の時間分解能レンジ
+TIME_RANGE="1:1e-14"  # １ステップ間の時間分解能レンジ
 
 ## plasma cavity ##
 # --cavity [fp/fc]/[ilat]:[ilat range]/[mlt]:[mlt range]/[height upper]:[height bottom]

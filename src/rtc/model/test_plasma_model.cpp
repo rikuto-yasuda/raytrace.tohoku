@@ -41,7 +41,8 @@ double plasma::test_simple::getDensity( const vector& point ) const       //////
 double plasma::test_simple::getDensity( const vector& point ) const               ///////////////新しいプラズマモデル（z軸方向にexpで減少）
 {
 	const double
-		d = std::fabs(130*exp(-point(2)/10))
+		d = std::fabs(1e6*exp(-point(2)/10))
+//		d = std::fabs(130*exp(-point(2)/10))
 		;
 
 	return d;
