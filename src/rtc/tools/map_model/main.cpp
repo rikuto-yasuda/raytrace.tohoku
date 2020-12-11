@@ -1,4 +1,4 @@
-#include "main.h"
+#nclude "main.h"
 int plot_plasma( rtc::basic_plasma_model& p )
 {
 //	std::clog << "plotting plasma-xy";
