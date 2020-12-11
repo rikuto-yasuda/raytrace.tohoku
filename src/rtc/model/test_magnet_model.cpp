@@ -48,16 +48,18 @@ magnet::test_simple::test_simple()
 
 {}
 
-vector magnet::test_simple::getField      ( const vector& pos ) const        //////////////追加したシンプルモデル（z軸方向一定）
+ //////////////追加したシンプルモデル（x軸方向一定）                   磁場の影響は無視したいため磁場弱・波数ベクトルの向きを決めるため磁場は必要..
+
+vector magnet::test_simple::getField      ( const vector& pos ) const
 {
 
-	boost::numeric::ublas::vector<double> z_vector(3);
+	boost::numeric::ublas::vector<double> x_vector(3);
 
-	z_vector[0] = 1e-7;  //x
-	z_vector[1] = 0;  //y
-	z_vector[2] = 0;  //z
+	x_vector[0] = 1e-20;  //x
+	x_vector[1] = 0;  //y
+	x_vector[2] = 0;  //z
 
-	return z_vector;
+	return x_vector;
 }
 
 // getFootPrint() --------------------------------
