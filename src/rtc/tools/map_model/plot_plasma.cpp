@@ -1,8 +1,9 @@
 #include <fstream>
 #include "../../../rtc/raytrace.h"
 #include "misc.h"
+////////////////////////////////////////////////////氷衛星簡易モデルのために一部修正
 
-void trace_plasma(
+void trace_plasm(
 	const rtc::basic_plasma_model& p,
 	const rtc::vector& start_ptr,
 	const rtc::vector&   end_ptr,
@@ -42,10 +43,12 @@ void plot_plasma_V(
 		fp_fpfc( name_fpfc.c_str() );
 
 	const double Re = p.getMother().getRadius();
-	const double theta = rtc::mlt2rad(mlt);
+//	const double theta = rtc::mlt2rad(mlt);                              /////元の設定
+	const double theta = 0;                                              /////単純化するため左のように変更
 	const double
-		range = 5*Re,
-		step  = 2*range/100;
+//		range = 5*Re,                                                    /////元の設定
+		range = 50*Re,                                                   /////計算範囲の関係でプロット範囲の広さも変える必要があった
+		step  = range/200;
 
 	for( double r = -range; r < range; r += step )
 	{
@@ -53,7 +56,8 @@ void plot_plasma_V(
 			x = r*std::cos(theta),
 			y = r*std::sin(theta);
 
-		for( double z = -range; z < range; z += step )
+//		for( double z = -range; z < range; z += step )                   /////地下のプラズマ密度を求めても仕方ないので・・
+		for( double z = 0.0; z < range; z += step )
 		{
 			rtc::vector ptr(3);
 			ptr[0] = x; ptr[1] = y; ptr[2] = z;

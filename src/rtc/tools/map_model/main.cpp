@@ -1,4 +1,6 @@
 #include "main.h"
+
+/////////////////////////////////////////////////////氷衛星の簡易モデルのプロットのため一部修正
 int plot_plasma( rtc::basic_plasma_model& p )
 {
 	std::clog << "plotting plasma-xy";
@@ -6,7 +8,7 @@ int plot_plasma( rtc::basic_plasma_model& p )
 
 	std::clog << "plotting plasma-xz";
 	plot_plasma_V("pxz-normal", p, 0 );
-
+/*                                                   ////////キャビティーは存在しないので無視（コメントアウト）
 	const double Re = p.getMother().getRadius();
 	p.addCavity( rtc::cavity(
 		0.3,
@@ -20,7 +22,7 @@ int plot_plasma( rtc::basic_plasma_model& p )
 
 	std::clog << "plotting plasma-xz";
     plot_plasma_V("pxz-cav", p, 0 );
-
+*/
 	return 0;
 }
 
@@ -34,8 +36,9 @@ int main()
 {
 	rtc::cosmos c( 1980,5,6, 0,0,0 );
 	rtc::model::magnet::IGRF       m(4);
-	rtc::model::plasma::sato_earth p;
-	rtc::planet::earth e(m,p);
+//	rtc::model::plasma::sato_earth p;                 ////////プラズマモデルをテストモデルに差し替え
+	rtc::model::plasma::test_simple p;
+	rtc::planet::benchmark e(m,p);                    ////////惑星モデルearth->benchmarkと差し替え（プロットの単位が惑星半径のため
 	const double Re = e.getRadius();
 	/*p.addCavity( rtc::cavity(
 		0.03,
