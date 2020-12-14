@@ -16,7 +16,7 @@ COORD="euclid" # (euclid|polar)
 
 SX=0
 SY=0
-SZ=30
+SZ=60
 
 
 ## モデルを選択 ##
@@ -34,12 +34,12 @@ FREQ=1e6       # 周波数[Hz]
 MODE="LO"       # 波動モード(LO|RX)
 #RAY_L=1e6       # トレースする最大の光路長
 RAY_L=7.1e8     # トレースする最大の光路長
-PITCH=50        # 磁場に対するピッチ角
-SEGMENT=1e3     # 出力する光路上の点の数
+PITCH=45        # 磁場に対するピッチ角
+SEGMENT=1000     # 出力する光路上の点の数
 MAX_STEP=5000   # トレース・ステップの最大数
 #STEP_LENGTH=1e8 # １ステップで進む最大の光路長
 STEP_LENGTH=1e7  # １ステップで進む最大の光路長
-PRECISION="2e-4"  # １ステップ間のベクトル誤差の許容率
+PRECISION="6e-4"  # １ステップ間のベクトル誤差の許容率
 #PRECISION="3.74e-6"  # １ステップ間のベクトル誤差の許容率
 #TIME_RANGE="1:1e-6"  # １ステップ間の時間分解能レンジ
 TIME_RANGE="1:1e-9"  # １ステップ間の時間分解能レンジ

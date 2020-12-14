@@ -47,8 +47,8 @@ void plot_plasma_V(
 	const double theta = 0;                                              /////単純化するため左のように変更
 	const double
 //		range = 5*Re,                                                    /////元の設定
-		range = 50*Re,                                                   /////計算範囲の関係でプロット範囲の広さも変える必要があった
-		step  = range/200;
+		range = 200*Re,                                                   /////計算範囲の関係でプロット範囲の広さも変える必要があった
+		step  = range/400;
 
 	for( double r = -range; r < range; r += step )
 	{
