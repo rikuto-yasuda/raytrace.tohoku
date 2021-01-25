@@ -18,9 +18,6 @@ double plasma::test_simple::getDensity( const vector& point ) const       //////
 
 	vector pa = point, pb = point;
 	pa(0) -= 3*Re;
-	pb(0) += 3*Re;
-
-	const double
 		r = std::fabs( 
 			  (point(0)*point(0) - Re*Re/2)
 			+ (point(1)*point(1) - Re*Re/2)
@@ -42,13 +39,14 @@ double plasma::test_simple::getDensity( const vector& point ) const             
 	const double
 		rxy = std::sqrt((pow(point(0),2.0))+(pow(point(1),2.0)));
 	const double
-		d = std::fabs(9.0e9*exp(-point(2)/2.4e5))+1.0e12*exp(-(r-3.2e6)/1.5e5)*exp(-((atan2(rxy,point(2)))/0.261799)*((atan2(rxy,point(2)))/0.261799));
+		plume = std::fabs(1.0e12*exp(-(r-3.2e6)/1.5e5)*exp(-((atan2(rxy,point(2)))/0.261799)*((atan2(rxy,point(2)))/0.261799)));
 //////////////エウロパ静水圧平行モデル 地表面で9.0*10^3(/cc) スケールハイト240km + プルーム
-
 //>->---d = std::fabs(4e10*exp(-point(2)/1e4))                                  //////////////point（２）は高度z（m)・単位は（/m＾３）であると考えている
-//>->---d = std::fabs(9e9*exp(-point(2)/2.4e5))                                  //////////////エウロパ静水圧平行モデル 地表面で9.0*10^3(/cc) スケールハイト240km
+	const double
+		t = std::fabs(9e9*exp(-point(2)/2.4e5));                                  //////////////エウロパ静水圧平行モデル 地表面で9.0*10^3(/cc) スケールハイト240km
 //		t = std::fabs(0.5e5*point(2))                                        //////////////解析解比較用プラズマモデル
-
+	const double
+		d = t+plume;
 		;
 
 	return d;

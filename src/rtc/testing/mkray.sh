@@ -14,9 +14,9 @@ COORD="euclid" # (euclid|polar)
 #SZ=2e6         # (source.z|altitude)
 #SZ=1.1e8        # (source.z|altitude)
 
-SX=-400
+SX=-1000
 SY=0
-SZ=500
+SZ=1000
 
 
 ## モデルを選択 ##
@@ -30,15 +30,15 @@ TIME="0:0.0"     # hour:minutes.sec
 
 ## 波動特性を設定 ##
 #FREQ=0          # 周波数[Hz]
-FREQ=4e7       # 周波数[Hz]
+FREQ=10e6       # 周波数[Hz]
 MODE="LO"       # 波動モード(LO|RX)
 #RAY_L=1e6       # トレースする最大の光路長
-RAY_L=7.1e8     # トレースする最大の光路長
+RAY_L=7.1e7     # トレースする最大の光路長
 PITCH=0        # 磁場に対するピッチ角
 SEGMENT=10000     # 出力する光路上の点の数
 MAX_STEP=400000   # トレース・ステップの最大数
 #STEP_LENGTH=1e8 # １ステップで進む最大の光路長
-STEP_LENGTH=1e7  # １ステップで進む最大の光路長
+STEP_LENGTH=1e4  # １ステップで進む最大の光路長
 PRECISION="5e-5"  # １ステップ間のベクトル誤差の許容率
 #PRECISION="3.74e-6"  # １ステップ間のベクトル誤差の許容率
 #TIME_RANGE="1:1e-6"  # １ステップ間の時間分解能レンジ
@@ -52,7 +52,7 @@ CAVITY_LIST=(                      \
 ) # cavityの数だけオプションを指定
 
 ## 出力ファイル名を指定する。
-OUTPUT="ray-P${PLASMA}-M${MAGNET}-${PLANET}-${MODE}-Z${SZ}-Plume"
+OUTPUT="ray-P${PLASMA}-M${MAGNET}-${PLANET}-${MODE}-Z${SZ}-FR${FREQ}-onlyPlume"
 ##OUTPUT="ray-P${PLASMA}-M${MAGNET}-${PLANET}-${MODE}-X${SX}-FR${FREQ}-PITCH${PITCH}"
 LOG="${0}.log"
 
