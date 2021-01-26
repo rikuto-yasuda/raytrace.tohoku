@@ -61,6 +61,8 @@ public:
 		model_test_null,
 		model_simple,
 		model_test_simple,
+		model_europa_nonplume,
+		model_europa_plume,
 		model_sato_earth,
 		model_nsumei_earth,
 		model_devine_garrett,
@@ -92,6 +94,12 @@ public:
 
 		case model_test_simple:
 			return "test_simple";
+
+		case model_europa_plume:
+			return "europa_plume";
+
+		case model_europa_nonplume:
+			return "europa_nonplume";
 
 		case model_sato_earth:
 			return "sato";

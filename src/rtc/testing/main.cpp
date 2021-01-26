@@ -82,6 +82,8 @@ rtc::basic_plasma_model& getPlasmaModel( const testing_env* env )
 	static rtc::model::plasma::test_null_plasma  test_null;
 	static rtc::model::plasma::simple       simple;
 	static rtc::model::plasma::test_simple       test_simple;
+	static rtc::model::plasma::europa_plume       europa_plume;
+	static rtc::model::plasma::europa_nonplume       europa_nonplume;
 	static rtc::model::plasma::sato_earth   sato;
 	static rtc::model::plasma::nsumei_earth nsumei( 2.0/*Kp*/ );
 	static rtc::model::plasma::DevineGarrett dg;
@@ -99,6 +101,12 @@ rtc::basic_plasma_model& getPlasmaModel( const testing_env* env )
 
 	case testing_env::model_test_simple:
 		return test_simple;
+
+	case testing_env::model_europa_plume:
+		return europa_plume;
+
+	case testing_env::model_europa_nonplume:
+		return europa_nonplume;
 
 	case testing_env::model_sato_earth:
 		return sato;

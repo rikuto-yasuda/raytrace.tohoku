@@ -1754,6 +1754,14 @@ YY_RULE_SETUP
 	{
 		g_env.plasma_model = testing_env::model_test_simple;
 	}
+	else if( str == "europa_plume" )
+	{
+		g_env.plasma_model = testing_env::model_europa_plume;
+	}
+	else if( str == "europa_nonplume" )
+	{
+		g_env.plasma_model = testing_env::model_europa_nonplume;
+	}
 	else if( str == "sato" )
 	{
 		g_env.plasma_model = testing_env::model_sato_earth;

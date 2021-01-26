@@ -16,11 +16,11 @@ COORD="euclid" # (euclid|polar)
 
 SX=-1000
 SY=0
-SZ=1000
+SZ=100
 
 
 ## モデルを選択 ##
-PLASMA="test_simple"    #(null|test_null|simple|test_simple|sato|nsumei|devine_garrett)
+PLASMA="europa_nonplume"    #(null|test_null|simple|test_simple|europa_plume|europa_nonplume|sato|nsumei|devine_garrett)
 MAGNET="test_simple"         #(null|test_null|simple|test_simple|igrf|igrf4|vip4)
 PLANET="benchmark"        #(earth(?)|jupiter|benchmark)
 
@@ -30,7 +30,7 @@ TIME="0:0.0"     # hour:minutes.sec
 
 ## 波動特性を設定 ##
 #FREQ=0          # 周波数[Hz]
-FREQ=10e6       # 周波数[Hz]
+FREQ=1e6       # 周波数[Hz]
 MODE="LO"       # 波動モード(LO|RX)
 #RAY_L=1e6       # トレースする最大の光路長
 RAY_L=7.1e7     # トレースする最大の光路長
@@ -52,7 +52,7 @@ CAVITY_LIST=(                      \
 ) # cavityの数だけオプションを指定
 
 ## 出力ファイル名を指定する。
-OUTPUT="ray-P${PLASMA}-M${MAGNET}-${PLANET}-${MODE}-Z${SZ}-FR${FREQ}-onlyPlume"
+OUTPUT="ray-P${PLASMA}-M${MAGNET}-${PLANET}-${MODE}-Z${SZ}-FR${FREQ}"
 ##OUTPUT="ray-P${PLASMA}-M${MAGNET}-${PLANET}-${MODE}-X${SX}-FR${FREQ}-PITCH${PITCH}"
 LOG="${0}.log"
 

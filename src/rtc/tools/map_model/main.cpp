@@ -36,8 +36,8 @@ int main()
 {
 	rtc::cosmos c( 1980,5,6, 0,0,0 );
 	rtc::model::magnet::IGRF       m(4);
-//	rtc::model::plasma::sato_earth p;                 ////////プラズマモデルをテストモデルに差し替え
-	rtc::model::plasma::test_simple p;
+	rtc::model::plasma::europa_nonplume p;                 ////////プラズマモデルをテストモデルに差し替え
+//	rtc::model::plasma::europa_plume p;
 	rtc::planet::benchmark e(m,p);                    ////////惑星モデルearth->benchmarkと差し替え（プロットの単位が惑星半径のため
 	const double Re = e.getRadius();
 	/*p.addCavity( rtc::cavity(

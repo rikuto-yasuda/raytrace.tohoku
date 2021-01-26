@@ -18,36 +18,6 @@ namespace magnet {
 	public:    matrix getDerivativeB( const vector& pos ) const;
 	};
 
-	// test_simpte model --------------------------------------////////もとのテストモデルは双極子磁場であった
-	// 単純な磁場モデルを記述。
-	// このモデルでは、磁場は単純な双極子磁場である。
-
-/*
-	class test_simple : public basic_magnet_model
-	{
-	public:
-		test_simple();
-
-		// test_simple_magnetは単純な双極子磁場であるから、
-		// フットプリントは解析的に導くことができる。
-		// そのため、basic_magnet_model::getFootPrint()を
-		// オーバーライドして高速化することができる。
-		vector getFootPrint(
-			const vector& sp,
-			double
-		) const;
-
-		vector getEquatorPrint(
-			const vector& sp,
-			double
-		) const;
-
-	protected:
-		vector getField( const vector& pos ) const;
-	};
-
-}
-*/
 // test_simpte model --------------------------------------////////練習用（z軸方向に一定の磁場を作る）
 
 	class test_simple : public basic_magnet_model
@@ -82,11 +52,23 @@ namespace magnet {
 	};
 
 	// test_simple model ---------------------------------------
-	// 単純なプラズマ圏モデル。
-	// このモデルでは、地球周辺に強力なプラズマの膜があり、
-	// x軸方向に ±２Re 離れた位置を中心に、強力なプラズマの塊が存在する。
-	// 現実のプラズマ圏にかなりのデフォルメをかけたものであると考えて差し支えない。
 	class test_simple : public basic_plasma_model
+	{
+	protected:
+		double getDensity( const vector& point )   const;
+	};
+
+	// europa_plume model ---------------------------------------
+	// Europaの静水圧平衡プラズマとプルームモデルを組み合わせたモデル。
+	class europa_plume : public basic_plasma_model
+	{
+	protected:
+		double getDensity( const vector& point )   const;
+	};
+
+	// europa_nonplume model ---------------------------------------
+	// Europaの静水圧平衡プラズマのみのモデル。
+	class europa_nonplume : public basic_plasma_model
 	{
 	protected:
 		double getDensity( const vector& point )   const;
