@@ -34,6 +34,7 @@ private:
 	void mainloop();
 	void report_progress( const double percent );
 	void print_location( const raypath_element& ptr );
+	void print_variation( const raypath_element& ptr );
 	
 	std::ostringstream    m_output;
 	std::string            m_state;
@@ -43,6 +44,7 @@ private:
 	volatile double     m_progress;
 
 	std::vector< raypath_element > m_raypath;
+	std::vector< raypath_element > m_rayvariation;
 
 private:
 	//危険なコピーコンストラクタを封印

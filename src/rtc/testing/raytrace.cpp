@@ -34,6 +34,8 @@ raytrace::raytrace(
 	
 	// レイパスの個数を確保
 	m_raypath.reserve( env->ray_segment );
+///////////////////////////////////////////////////////工事中
+	m_rayvariation.reserve( env->ray_segment );
 	
 	if( env->is_verbose )
 	{
@@ -177,6 +179,12 @@ void raytrace::mainloop()
 			0.0,
 			rtc::vector_pair( m_ray->getR(), m_ray->getK() )
 		));
+////////////////////////////////////////////////////////////////工事中
+		print_variation(raypath_element(
+			0.0,
+			rtc::vector_pair( m_ray->getR(), m_ray->getK() )
+		));
+///////////////////////////////////////////////////////////////工事中
 	}
 	
 	for( unsigned loop = 0;
@@ -204,6 +212,12 @@ void raytrace::mainloop()
 				t,
 				rtc::vector_pair( m_ray->getR(), m_ray->getK() )
 			));
+///////////////////////////////////////////////////////////////////////工事中
+			m_rayvariation.push_back(raypath_element(
+				dt,
+				rtc::vector_pair( m_ray->getDeltaR(), m_ray->getDeltaK() )
+			));
+///////////////////////////////////////////////////////////////////////
 		}
 		else /*( ray_length >= m_env->ray_length )*/
 		{
@@ -220,7 +234,12 @@ void raytrace::mainloop()
 				t - dt*(1.0-factor),
 				rtc::vector_pair( r, k )
 			));
-			
+///////////////////////////////////////////////////////////////////////工事中
+			m_rayvariation.push_back(raypath_element(
+				dt * factor,
+				rtc::vector_pair( factor * m_ray->getDeltaR(), factor * m_ray->getDeltaK() )
+			));
+///////////////////////////////////////////////////////////////////////
 			break;
 		}
 	}
@@ -233,10 +252,14 @@ void raytrace::mainloop()
 		for( i = 0; i < n; ++i )
 		{
 			print_location( m_raypath[i] );
+/////////////////////////////////////////////////////////工事中
+			print_variation( m_rayvariation[i] );
 		}
 		for( ; i < m_env->ray_segment; ++i )
 		{
 			print_location( m_raypath[ static_cast<int>(n-1) ] );
+///////////////////////////////////////////////////////////////////////工事中
+			print_variation( m_rayvariation[ static_cast<int>(n-1) ] );
 		}
 	}
 	
@@ -245,11 +268,15 @@ void raytrace::mainloop()
 		print_location(
 			m_raypath[ static_cast<int>(i * n/m_env->ray_segment) ]
 		);
+		print_variation(
+			m_rayvariation[ static_cast<int>(i * n/m_env->ray_segment) ]
+		);
 	}
 	
 	// 終了地点を確実に表示させる。
 	report_progress( 1.0 );
 	print_location( m_raypath.back() );
+	print_variation( m_rayvariation.back() );
 }
 
 
@@ -288,6 +315,24 @@ void raytrace::print_location( const raypath_element& ptr )
 	m_output
 		<< t << " "
 		<< r(0) << " " << r(1) << " " << r(2) << " "
-		<< k(0) << " " << k(1) << " " << k(2)
+		<< k(0) << " " << k(1) << " " << k(2) << "   ";
+}
+
+// -------------------------------------------------------------------
+// raytrace::print_variation()
+// 波動の位置、波数ベクトル、および波動が生まれてからの経過時間を出力する。
+//
+void raytrace::print_variation( const raypath_element& ptr )
+{
+	const double Re = rtc::getCosmos().getPlanet().getRadius();
+	const double dt  = ptr.first;
+	const rtc::vector dr = ptr.second.first  / Re;// 位置ベクトル
+	const rtc::vector dk = ptr.second.second / Re;// 波数ベクトル
+
+	m_output
+		<< dt << " "
+		<< dr(0) << " " << dr(1) << " " << dr(2) << " "
+		<< dk(0) << " " << dk(1) << " " << dk(2)
 	<< "\n";
 }
+
