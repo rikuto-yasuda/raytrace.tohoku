@@ -34,7 +34,7 @@ raytrace::raytrace(
 	
 	// ÉåÉCÉpÉXÇÃå¬êîÇämï€
 	m_raypath.reserve( env->ray_segment );
-///////////////////////////////////////////////////////çHéñíÜ
+///////////////////////////////////////////////////////stepïùämîFóp
 	m_rayvariation.reserve( env->ray_segment );
 	
 	if( env->is_verbose )
@@ -179,12 +179,12 @@ void raytrace::mainloop()
 			0.0,
 			rtc::vector_pair( m_ray->getR(), m_ray->getK() )
 		));
-////////////////////////////////////////////////////////////////çHéñíÜ
+////////////////////////////////////////////////////////////////stepä‘äuämîFóp
 		print_variation(raypath_element(
 			0.0,
 			rtc::vector_pair( m_ray->getR(), m_ray->getK() )
 		));
-///////////////////////////////////////////////////////////////çHéñíÜ
+///////////////////////////////////////////////////////////////
 	}
 	
 	for( unsigned loop = 0;
@@ -212,7 +212,7 @@ void raytrace::mainloop()
 				t,
 				rtc::vector_pair( m_ray->getR(), m_ray->getK() )
 			));
-///////////////////////////////////////////////////////////////////////çHéñíÜ
+//////////////////////////////////////////////////////////////////////stepä‘äuämîFóp
 			m_rayvariation.push_back(raypath_element(
 				dt,
 				rtc::vector_pair( m_ray->getDeltaR(), m_ray->getDeltaK() )
@@ -234,7 +234,7 @@ void raytrace::mainloop()
 				t - dt*(1.0-factor),
 				rtc::vector_pair( r, k )
 			));
-///////////////////////////////////////////////////////////////////////çHéñíÜ
+///////////////////////////////////////////////////////////////////////stepä‘äuämîFóp
 			m_rayvariation.push_back(raypath_element(
 				dt * factor,
 				rtc::vector_pair( factor * m_ray->getDeltaR(), factor * m_ray->getDeltaK() )
@@ -252,13 +252,13 @@ void raytrace::mainloop()
 		for( i = 0; i < n; ++i )
 		{
 			print_location( m_raypath[i] );
-/////////////////////////////////////////////////////////çHéñíÜ
+/////////////////////////////////////////////////////////stepä‘äuämîFóp
 			print_variation( m_rayvariation[i] );
 		}
 		for( ; i < m_env->ray_segment; ++i )
 		{
 			print_location( m_raypath[ static_cast<int>(n-1) ] );
-///////////////////////////////////////////////////////////////////////çHéñíÜ
+///////////////////////////////////////////////////////////////////////
 			print_variation( m_rayvariation[ static_cast<int>(n-1) ] );
 		}
 	}

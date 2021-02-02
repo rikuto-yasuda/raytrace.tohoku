@@ -15,7 +15,7 @@
 # magnet model = test_simple
 # planet       = benchmark
 # date         = 2000/1/1 0:0.0
-# testing start at : Tue Feb  2 15:00:30 2021
+# testing start at : Tue Feb  2 15:41:00 2021
 
 
 # cavity no.0#####
@@ -10030,5 +10030,5 @@
 0.237414 53530.8 0 45455 1.60539e-05 0 1.34788e-05   3.2768e-05 7.52219 0 6.31561 1.86024e-132 -0 1.69082e-132
 0.237428 53534 0 45457.7 1.60539e-05 0 1.34788e-05   1.36865e-05 3.14185 0 2.63789 7.45853e-133 -0 6.77918e-133
 
-# testing is normal end at : Tue Feb  2 15:00:31 2021
+# testing is normal end at : Tue Feb  2 15:41:01 2021
 
