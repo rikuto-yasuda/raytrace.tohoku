@@ -14,13 +14,13 @@ COORD="euclid" # (euclid|polar)
 #SZ=2e6         # (source.z|altitude)
 #SZ=1.1e8        # (source.z|altitude)
 
-SX=-1000
+SX=0
 SY=0
-SZ=100
+SZ=1
 
 
 ## モデルを選択 ##
-PLASMA="europa_nonplume"    #(null|test_null|simple|test_simple|europa_plume|europa_nonplume|sato|nsumei|devine_garrett)
+PLASMA="test_simple"    #(null|test_null|simple|test_simple|europa_plume|europa_nonplume|sato|nsumei|devine_garrett)
 MAGNET="test_simple"         #(null|test_null|simple|test_simple|igrf|igrf4|vip4)
 PLANET="benchmark"        #(earth(?)|jupiter|benchmark)
 
@@ -33,16 +33,16 @@ TIME="0:0.0"     # hour:minutes.sec
 FREQ=1e6       # 周波数[Hz]
 MODE="LO"       # 波動モード(LO|RX)
 #RAY_L=1e6       # トレースする最大の光路長
-RAY_L=7.1e7     # トレースする最大の光路長
-PITCH=0        # 磁場に対するピッチ角
-SEGMENT=10000     # 出力する光路上の点の数
-MAX_STEP=400000   # トレース・ステップの最大数
+RAY_L=1e6     # トレースする最大の光路長
+PITCH=330        # 磁場に対するピッチ角
+SEGMENT=200000     # 出力する光路上の点の数
+MAX_STEP=2000000   # トレース・ステップの最大数
 #STEP_LENGTH=1e8 # １ステップで進む最大の光路長
-STEP_LENGTH=1e4  # １ステップで進む最大の光路長
+STEP_LENGTH=1  # １ステップで進む最大の光路長
 PRECISION="5e-5"  # １ステップ間のベクトル誤差の許容率
 #PRECISION="3.74e-6"  # １ステップ間のベクトル誤差の許容率
 #TIME_RANGE="1:1e-6"  # １ステップ間の時間分解能レンジ
-TIME_RANGE="1:1e-9"  # １ステップ間の時間分解能レンジ
+TIME_RANGE="10:1e-9"  # １ステップ間の時間分解能レンジ
 
 ## plasma cavity ##
 # --cavity [fp/fc]/[ilat]:[ilat range]/[mlt]:[mlt range]/[height upper]:[height bottom]
