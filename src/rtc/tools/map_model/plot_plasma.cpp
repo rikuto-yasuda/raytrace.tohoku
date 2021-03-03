@@ -47,8 +47,8 @@ void plot_plasma_V(
 	const double theta = 0;                                              /////単純化するため左のように変更
 	const double
 //		range = 5*Re,                                                    /////元の設定
-		range = 2000*Re,                                                   /////計算範囲の関係でプロット範囲の広さも変える必要があった
-		step  = range/1000;
+		range = 1000*Re,                                                   /////計算範囲の関係でプロット範囲の広さも変える必要があった
+		step  = range/400;
 
 	for( double r = -range; r < range; r += step )
 	{
@@ -57,7 +57,7 @@ void plot_plasma_V(
 			y = r*std::sin(theta);
 
 //		for( double z = -range; z < range; z += step )                   /////地下のプラズマ密度を求めても仕方ないので・・
-		for( double z = -range; z < range; z += step )
+		for( double z = -range*0.2; z < range*2; z += step )
 		{
 			rtc::vector ptr(3);
 			ptr[0] = x; ptr[1] = y; ptr[2] = z;
