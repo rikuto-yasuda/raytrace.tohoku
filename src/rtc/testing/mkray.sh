@@ -14,13 +14,13 @@ COORD="euclid" # (euclid|polar)
 #SZ=2e6         # (source.z|altitude)
 #SZ=1.1e8        # (source.z|altitude)
 
-SX=-1000
+SX=0
 SY=0
-SZ=1000
+SZ=1
 
 
 ## モデルを選択 ##
-PLASMA="europa_nonplume"    #(null|test_null|simple|test_simple|europa_plume|europa_nonplume|sato|nsumei|devine_garrett)
+PLASMA="test_simple"    #(null|test_null|simple|test_simple|europa_plume|europa_nonplume|sato|nsumei|devine_garrett)
 MAGNET="test_simple"         #(null|test_null|simple|test_simple|igrf|igrf4|vip4)
 PLANET="benchmark"        #(earth(?)|jupiter|benchmark)
 
@@ -29,20 +29,15 @@ DATE="2000/1/1"  # year/month/day
 TIME="0:0.0"     # hour:minutes.sec
 
 ## 波動特性を設定 ##
-#FREQ=0          # 周波数[Hz]
-FREQ=5e6       # 周波数[Hz]
+FREQ=1e6       # 周波数[Hz]
 MODE="LO"       # 波動モード(LO|RX)
-#RAY_L=1e6       # トレースする最大の光路長
-RAY_L=1e7     # トレースする最大の光路長
-PITCH=0        # 磁場に対するピッチ角
-SEGMENT=50000     # 出力する光路上の点の数
-MAX_STEP=500000   # トレース・ステップの最大数
-#STEP_LENGTH=1e8 # １ステップで進む最大の光路長
-STEP_LENGTH=100000  # １ステップで進む最大の光路長
-PRECISION="2e-5"  # １ステップ間のベクトル誤差の許容率
-#PRECISION="3.74e-6"  # １ステップ間のベクトル誤差の許容率
-#TIME_RANGE="1:1e-6"  # １ステップ間の時間分解能レンジ
-TIME_RANGE="10:1e-13"  # １ステップ間の時間分解能レンジ
+RAY_L=4e5     # トレースする最大の光路長
+PITCH=330        # 磁場に対するピッチ角
+SEGMENT=500000     # 出力する光路上の点の数
+MAX_STEP=500000 # トレース・ステップの最大数
+STEP_LENGTH=100  # １ステップで進む最大の光路長 (1step毎に進める最大長を[m]で指定する)
+PRECISION="10000"  # １ステップ間のベクトル誤差の許容率
+TIME_RANGE="1e-1:1e-13"  # １ステップ間の時間分解能レンジ  (1step毎に進める時間の最大値・最小値を指定する。)
 
 ## plasma cavity ##
 # --cavity [fp/fc]/[ilat]:[ilat range]/[mlt]:[mlt range]/[height upper]:[height bottom]
@@ -52,7 +47,7 @@ CAVITY_LIST=(                      \
 ) # cavityの数だけオプションを指定
 
 ## 出力ファイル名を指定する。
-OUTPUT="ray-P${PLASMA}-M${MAGNET}-${PLANET}-${MODE}-Z${SZ}-FR${FREQ}"
+OUTPUT="ray-P${PLASMA}-M${MAGNET}-${PLANET}-${MODE}-Z${SZ}-FR${FREQ}-TIME-RANGE${TIME_RANGE}"
 ##OUTPUT="ray-P${PLASMA}-M${MAGNET}-${PLANET}-${MODE}-X${SX}-FR${FREQ}-PITCH${PITCH}"
 LOG="${0}.log"
 
