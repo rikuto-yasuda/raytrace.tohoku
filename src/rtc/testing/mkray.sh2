@@ -1,4 +1,10 @@
-for ORDER in 1 2 3 4 5 6 7 8 9
+for ORDER in 6
+
+do
+
+
+for COE in 1 2 3 4 5 6 7 8 9
+
 
 do
 
@@ -34,13 +40,13 @@ TIME="0:0.0"     # hour:minutes.sec
 ## 波動特性を設定 ##
 FREQ=1e6       # 周波数[Hz]
 MODE="LO"       # 波動モード(LO|RX)
-RAY_L=4e7     # トレースする最大の光路長
+RAY_L=4e6     # トレースする最大の光路長
 PITCH=330        # 磁場に対するピッチ角
-SEGMENT=500000     # 出力する光路上の点の数
-MAX_STEP=500000   # トレース・ステップの最大数
-STEP_LENGTH=100000  # １ステップで進む最大の光路長 (1step毎に進める最大長を[m]で指定する)
+SEGMENT=3000     # 出力する光路上の点の数
+MAX_STEP=3000   # トレース・ステップの最大数
+STEP_LENGTH=10000000  # １ステップで進む最大の光路長 (1step毎に進める最大長を[m]で指定する)
 PRECISION="10000"  # １ステップ間のベクトル誤差の許容率
-TIME_RANGE="1e-${ORDER}:1e-13"  # １ステップ間の時間分解能レンジ  (1step毎に進める時間の最大値・最小値を指定する。)
+TIME_RANGE="${COE}e-${ORDER}:1e-13"  # １ステップ間の時間分解能レンジ  (1step毎に進める時間の最大値・最小値を指定する。)
 
 ## plasma cavity ##
 # --cavity [fp/fc]/[ilat]:[ilat range]/[mlt]:[mlt range]/[height upper]:[height bottom]
@@ -104,5 +110,7 @@ send_mail()
 
 	echo "END (${OUTPUT}) at " `date` >> ${LOG}
 	send_mail
+
+done
 
 done
