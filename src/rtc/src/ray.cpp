@@ -172,7 +172,7 @@ void ray::checkState(
 			log("core::ray : The refractive index reached outside the range.")
 	);
 
-	if(r(2) < 0 /*(std::sqrt((pow(r(0),2.0))+(pow(r(1),2.0))+(pow(r(2)+1.601e6,2.0)))) < 1.601e6*/)
+	if((std::sqrt((pow(r(0),2.0))+(pow(r(1),2.0))+(pow(r(2)+1.601e6,2.0)))) < 1.601e6)
         throw std::range_error(
             log("enter solid part.")
     );

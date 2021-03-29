@@ -248,7 +248,7 @@ void raytrace::mainloop()
 				}
 			}
 			
-			catch(const std::exception& e)
+			catch(const std::range_error& e)
 			{
 				break;
 			}
