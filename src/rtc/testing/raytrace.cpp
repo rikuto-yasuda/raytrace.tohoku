@@ -186,63 +186,73 @@ void raytrace::mainloop()
 		));
 ///////////////////////////////////////////////////////////////
 	}
-	
-	for( unsigned loop = 0;
-		 loop < m_env->step_count;
-		 ++loop
-	){
-		const double dt = m_ray->take_a_step(); // 波動を1step進める。
-		t += dt;
-		
-		const double dr = rtc::norm_2( m_ray->getDeltaR() );
-		ray_length += dr;
 
-		// 以下、光が進んだ距離から終了点を導出。
-		if( ray_length < m_env->ray_length )
-		{
+		
+		for( unsigned loop = 0;
+			loop < m_env->step_count;
+			++loop
+		){
+			try
+			{
+				
+				const double dt = m_ray->take_a_step(); // 波動を1step進める。
+				t += dt;
+				
+				const double dr = rtc::norm_2( m_ray->getDeltaR() );
+				ray_length += dr;
+
+				// 以下、光が進んだ距離から終了点を導出。
+				if( ray_length < m_env->ray_length )
+				{
+					
+					// プログレス・バーを表示
+					report_progress( std::max(
+						ray_length / m_env->ray_length,
+						static_cast<double>(loop) / m_env->step_count
+					));
+					
+					// 結果をためる
+					m_raypath.push_back(raypath_element(
+						t,
+						rtc::vector_pair( m_ray->getR(), m_ray->getK() )
+					));
+		//////////////////////////////////////////////////////////////////////step間隔確認用
+					m_rayvariation.push_back(raypath_element(
+						dt,
+						rtc::vector_pair( m_ray->getDeltaR(), m_ray->getDeltaK() )
+					));
+		///////////////////////////////////////////////////////////////////////
+				}
+				else /*( ray_length >= m_env->ray_length )*/
+				{
+					//最終点はray_lengthちょうどに収める。
+					rtc::vector r = m_ray->getR()-m_ray->getDeltaR();
+					rtc::vector k = m_ray->getK()-m_ray->getDeltaK();
+					
+					const double lest = m_env->ray_length - (ray_length-dr);
+					const double factor = lest/dr;
+					r += factor * m_ray->getDeltaR();
+					k += factor * m_ray->getDeltaK();
+					
+					m_raypath.push_back(raypath_element(
+						t - dt*(1.0-factor),
+						rtc::vector_pair( r, k )
+					));
+		///////////////////////////////////////////////////////////////////////step間隔確認用
+					m_rayvariation.push_back(raypath_element(
+						dt * factor,
+						rtc::vector_pair( factor * m_ray->getDeltaR(), factor * m_ray->getDeltaK() )
+					));
+		///////////////////////////////////////////////////////////////////////
+					break;
+				}
+			}
 			
-			// プログレス・バーを表示
-			report_progress( std::max(
-				ray_length / m_env->ray_length,
-				static_cast<double>(loop) / m_env->step_count
-			));
-			
-			// 結果をためる
-			m_raypath.push_back(raypath_element(
-				t,
-				rtc::vector_pair( m_ray->getR(), m_ray->getK() )
-			));
-//////////////////////////////////////////////////////////////////////step間隔確認用
-			m_rayvariation.push_back(raypath_element(
-				dt,
-				rtc::vector_pair( m_ray->getDeltaR(), m_ray->getDeltaK() )
-			));
-///////////////////////////////////////////////////////////////////////
+			catch(const std::exception& e)
+			{
+				break;
+			}
 		}
-		else /*( ray_length >= m_env->ray_length )*/
-		{
-			//最終点はray_lengthちょうどに収める。
-			rtc::vector r = m_ray->getR()-m_ray->getDeltaR();
-			rtc::vector k = m_ray->getK()-m_ray->getDeltaK();
-			
-			const double lest = m_env->ray_length - (ray_length-dr);
-			const double factor = lest/dr;
-			r += factor * m_ray->getDeltaR();
-			k += factor * m_ray->getDeltaK();
-			
-			m_raypath.push_back(raypath_element(
-				t - dt*(1.0-factor),
-				rtc::vector_pair( r, k )
-			));
-///////////////////////////////////////////////////////////////////////step間隔確認用
-			m_rayvariation.push_back(raypath_element(
-				dt * factor,
-				rtc::vector_pair( factor * m_ray->getDeltaR(), factor * m_ray->getDeltaK() )
-			));
-///////////////////////////////////////////////////////////////////////
-			break;
-		}
-	}
 
 	// m_outputに整理して出力
 	const double n = m_raypath.size();
