@@ -1,4 +1,4 @@
-// tracer.cpp: tracer ƒNƒ‰ƒX‚ÌƒCƒ“ƒvƒŠƒƒ“ƒe[ƒVƒ‡ƒ“
+// tracer.cpp: tracer ï¿½Nï¿½ï¿½ï¿½Xï¿½ÌƒCï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½eï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½
 //
 //////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
@@ -7,7 +7,7 @@
 using namespace rtc;
 
 //////////////////////////////////////////////////////////////////////
-// \’z/Á–Å
+// ï¿½\ï¿½z/ï¿½ï¿½ï¿½ï¿½
 //////////////////////////////////////////////////////////////////////
 ray::ray( const wave_parameter& wparam )
  : m_dt_before(0.0),
@@ -56,9 +56,9 @@ ray::intermediate& ray::intermediate::operator =(
 bool ray::intermediate::operator ==(
 	const ray::intermediate& r
 ) const {
-	// ‚‘¬‰»‚Ì‚½‚ßA&& ‚Å‚Í‚È‚­'&'‚ðŽg‚¤B
-	// ‘S•” bool ‚Å ‚P‚Â‚Å‚à false ‚ª‚ ‚ê‚Î‚¢‚¢–ó‚¾‚©‚ç
-	// ‚±‚ê‚Å‚¢‚¢EEE‚Í‚¸
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ßA&& ï¿½Å‚Í‚È‚ï¿½'&'ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½B
+	// ï¿½Sï¿½ï¿½ bool ï¿½ï¿½ ï¿½Pï¿½Â‚Å‚ï¿½ false ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î‚ï¿½ï¿½ï¿½ï¿½ó‚¾‚ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½Eï¿½Eï¿½Eï¿½Í‚ï¿½
 	assert( B.size() == r.B.size() );
 	return (
 		( B(0) == r.B(0) )&
@@ -87,7 +87,7 @@ bool ray::intermediate::operator ==(
 	);
 }
 
-// “r’†‚Å—˜—p‚·‚éŒvŽZ’l‚ÌXV //////////////////////////////////////////
+// ï¿½rï¿½ï¿½ï¿½Å—ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½vï¿½Zï¿½lï¿½ÌXï¿½V //////////////////////////////////////////
 
 void ray::update_intermediate(
 	ray::intermediate& i,
@@ -108,7 +108,7 @@ void ray::update_intermediate(
 
 	const double theta = std::acos(
 		inner_prod( i.B/norm_2(i.B), k/norm_2(k) )
-	); // theta = Ž¥ê‚Æ¬‚·Šp
+	); // theta = ï¿½ï¿½ï¿½ï¿½Æï¿½ï¿½ï¿½ï¿½p
 	i.s      =  std::sin(theta)              ;
 	i.c      =  std::cos(theta)              ;
 	i.s2     =  i.s*i.s                      ;
@@ -131,19 +131,19 @@ void ray::update_intermediate(
 	i.denominator = denominator_G(i,r)       ;
 }
 
-// Œõü‚Ìó‘Ôƒ`ƒFƒbƒN //////////////////////////////////////////////////
+// ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½Ôƒ`ï¿½Fï¿½bï¿½N //////////////////////////////////////////////////
 void ray::checkState(
 	const ray::intermediate& i,
 	const vector& r,
 	const vector& k
 ) const {
 
-	// Œõ‚ªÁ‚¦‚Ä‚È‚¢‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN‚·‚éB
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚È‚ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½`ï¿½Fï¿½bï¿½Nï¿½ï¿½ï¿½ï¿½B
 	if( i.numerator >= i.denominator )
 		throw std::runtime_error(log("the ray was evanesced."));
 
 
-	// •s³‚ÈNaN’l‚Í—áŠOƒGƒ‰[‚ð“Š‚°‚éB
+	// ï¿½sï¿½ï¿½ï¿½ï¿½NaNï¿½lï¿½Í—ï¿½Oï¿½Gï¿½ï¿½ï¿½[ï¿½ð“Š‚ï¿½ï¿½ï¿½B
 	const bool isNaN_r = 
 		(isnan(r[0]) != 0) |
 		(isnan(r[1]) != 0) |
@@ -164,22 +164,28 @@ void ray::checkState(
 			log("k vector reached an invalid value.")
 	);
 
-	// ‹üÜ—¦‚ª 0 < n <= 1 ‚É‚ ‚é‚±‚Æ‚ðŠm”F‚·‚éB
-	// ‚¿‚È‚Ý‚É‚±‚Ì”ÍˆÍ‚ðˆí’E‚µ‚½‚çƒ‚[ƒh•ÏŠ·‚ª‹N‚±‚é‚ç‚µ‚¢B
+	// ï¿½ï¿½ï¿½Ü—ï¿½ï¿½ï¿½ 0 < n <= 1 ï¿½É‚ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½ï¿½B
+	// ï¿½ï¿½ï¿½È‚Ý‚É‚ï¿½ï¿½Ì”ÍˆÍ‚ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½çƒ‚ï¿½[ï¿½hï¿½ÏŠï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ç‚µï¿½ï¿½ï¿½B
 	const double n = cnst::c * norm_2(k)/( 2*cnst::pi*getWaveParam().getFreq() );
 	if( n <= 0.0 || 1.0 < n )
 		throw std::runtime_error(
 			log("core::ray : The refractive index reached outside the range.")
 	);
+
+	//ï¿½Å‘Ì•ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ÉŒvï¿½Zï¿½ï¿½ï¿½~ï¿½ß‚ï¿½
+	if( (std::sqrt((pow(r(0),2.0))+(pow(r(1),2.0))+(pow(r(2)+1.601e6,2.0)))) < 1.601e6 )
+		throw std::range_error(
+			log("enter solid part.")
+	);
 }
 
-// ”g”ƒxƒNƒgƒ‹‚Ì‰Šú’l ////////////////////////////////////////////////
+// ï¿½gï¿½ï¿½ï¿½xï¿½Nï¿½gï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½l ////////////////////////////////////////////////
 ray* ray::initialize(
 	const vector& r,
 	const vector& k
 ) {
-	// r(x,y,z)‚©‚çk(x,y,z)•ûŒü‚ðŒü‚¢‚Ä‚¢‚é
-	// ”g”ƒxƒNƒgƒ‹‚ð¶¬‚µ‚Ä•Ô‚·B
+	// r(x,y,z)ï¿½ï¿½ï¿½ï¿½k(x,y,z)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
+	// ï¿½gï¿½ï¿½ï¿½xï¿½Nï¿½gï¿½ï¿½ï¿½ð¶ï¿½ï¿½ï¿½ï¿½Ä•Ô‚ï¿½ï¿½B
 	intermediate i;
 	update_intermediate(i,r,k);
 	const vector k_new = k
@@ -188,14 +194,14 @@ ray* ray::initialize(
 		/( cnst::c * norm_2(k) )
 	;
 
-	// initialize‚Å m_im ‚à‰Šú‰»‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢B
+	// initializeï¿½ï¿½ m_im ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½Î‚È‚ï¿½È‚ï¿½ï¿½B
 	update_intermediate(m_im,r,k_new);
 	checkState(m_im,r,k_new);
 	
-	// initialize‚ÅAm_dt_before‚à‰Šú‰»‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢B
+	// initializeï¿½ÅAm_dt_beforeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½Î‚È‚ï¿½È‚ï¿½ï¿½B
 	m_dt_before = getWaveParam().getTimeStep().second;
 
-	// kƒxƒNƒgƒ‹‚Ìâ‘Î’l‚ÍAŠÖ”G‚ð•ÏŒ`‚·‚é‚±‚Æ‚Åo‚·‚±‚Æ‚ª‚Å‚«‚éB
+	// kï¿½xï¿½Nï¿½gï¿½ï¿½ï¿½Ìï¿½Î’lï¿½ÍAï¿½Öï¿½Gï¿½ï¿½ÏŒ`ï¿½ï¿½ï¿½é‚±ï¿½Æ‚Åoï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Å‚ï¿½ï¿½ï¿½B
 	m_rk = vector_pair( r, k_new );
 	
 	return this;
@@ -220,19 +226,19 @@ ray* ray::initialize(
 	const vector& r,
 	double pitch, double round
 ) {
-	// r(rx,ry,rz)‚É‚¨‚¯‚éŽ¥êB‚É‚Â‚¢‚ÄAŽ¥‹Cƒ‚[ƒƒ“ƒgƒxƒNƒgƒ‹‚ðN‚Æ‚·‚é‚Æ
-	// ƒxƒNƒgƒ‹B‚ð(N x B)‚ðŽ²‚Æ‚µ‚ÄpitchŠp‰ñ“]‚µAŽŸ‚ÉB‚ðŽ²‚Éround‚¾‚¯‰ñ“]‚µ‚½
-	// •ûŒü‚ð”g”ƒxƒNƒgƒ‹‚Æ‚µ‚Ä¶¬‚µA‰ŠúƒxƒNƒgƒ‹ƒyƒA‚ð•Ô‚·B
+	// r(rx,ry,rz)ï¿½É‚ï¿½ï¿½ï¿½ï¿½éŽ¥ï¿½ï¿½Bï¿½É‚Â‚ï¿½ï¿½ÄAï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½xï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½Nï¿½Æ‚ï¿½ï¿½ï¿½ï¿½
+	// ï¿½xï¿½Nï¿½gï¿½ï¿½Bï¿½ï¿½(N x B)ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½pitchï¿½pï¿½ï¿½]ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½roundï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]ï¿½ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½xï¿½Nï¿½gï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Äï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½xï¿½Nï¿½gï¿½ï¿½ï¿½yï¿½Aï¿½ï¿½Ô‚ï¿½ï¿½B
 	vector
 		m = getCosmos().getPlanet().getMagnet().getMagneticMoment(),
 		B = getCosmos().getMagnetField(r);
 
-	// Ž¥ê‚ª‚È‚¢‚Æ‚Ü‚¸‚¢‚Ì‚Åƒ`ƒFƒbƒNB
+	// ï¿½ï¿½ï¿½ê‚ªï¿½È‚ï¿½ï¿½Æ‚Ü‚ï¿½ï¿½ï¿½ï¿½Ì‚Åƒ`ï¿½Fï¿½bï¿½Nï¿½B
 	double norm_m = norm_2(m), norm_B = norm_2(B);
 
 	if( norm_m == 0.0 )
 	{
-		// Ž¥êƒ‚[ƒƒ“ƒg‚ÍA‚Æ‚è‚ ‚¦‚¸ZŽ²•ûŒü‚ÉL‚Ñ‚é‚à‚Ì‚ðŽg‚¤B
+		// ï¿½ï¿½ï¿½êƒ‚ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½ÍAï¿½Æ‚è‚ ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÉLï¿½Ñ‚ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½gï¿½ï¿½ï¿½B
 		log("libraytrace: ray<>::initialize: "
 			"magnetic moment not exists, instead we use vector(0,0,1).");
 		m(2) = 1.0;
@@ -240,17 +246,17 @@ ray* ray::initialize(
 	}
 	if( norm_B == 0.0 )
 	{
-		// Ž¥ê‚ÍA‚Æ‚è‚ ‚¦‚¸-m‚ð‚Â‚©‚¤B
+		// ï¿½ï¿½ï¿½ï¿½ÍAï¿½Æ‚è‚ ï¿½ï¿½ï¿½ï¿½-mï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½ï¿½B
 		B = -m;
 		norm_B = norm_2(B);
 	}
 
-    // ‰ñ“]‚Å—˜—p‚·‚é‚½‚ß‚ÉA’PˆÊƒxƒNƒgƒ‹‰»‚·‚éB
+    // ï¿½ï¿½]ï¿½Å—ï¿½ï¿½pï¿½ï¿½ï¿½é‚½ï¿½ß‚ÉAï¿½Pï¿½Êƒxï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
     m /= norm_m;
     B /= norm_B;
 
-	// ‘æˆê’i‚Ì‰ñ“]B‚±‚Ì‰ñ“]‚ÍAN~B‚ðŽ²‚Æ‚µ‚ÄApitch[rad]‚¾‚¯‰ñ“]‚·‚éB
-	// outer_prod()‚Íƒeƒ“ƒ\ƒ‹Ï‚È‚Ì‚ÅŽg‚¦‚È‚©‚Á‚½‚è‚·‚éB
+	// ï¿½ï¿½ï¿½iï¿½Ì‰ï¿½]ï¿½Bï¿½ï¿½ï¿½Ì‰ï¿½]ï¿½ÍANï¿½~Bï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ÄApitch[rad]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]ï¿½ï¿½ï¿½ï¿½B
+	// outer_prod()ï¿½Íƒeï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½Ï‚È‚Ì‚ÅŽgï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è‚·ï¿½ï¿½B
 	vector n = boost::numeric::ublas::zero_vector<double>(3);
 	n(0) = m(1)*B(2)-m(2)*B(1),
 	n(1) = m(2)*B(0)-m(0)*B(2),
@@ -258,10 +264,10 @@ ray* ray::initialize(
 
 	vector vk = rotation( B, n, pitch );
 	
-	// ‘æ‚Q’i‚Ì‰ñ“]B‚±‚Ì‰ñ“]‚ÍAB‚ðŽ²‚Æ‚µ‚Äround[rad]‚¾‚¯‰ñ“]‚·‚éB
+	// ï¿½ï¿½Qï¿½iï¿½Ì‰ï¿½]ï¿½Bï¿½ï¿½ï¿½Ì‰ï¿½]ï¿½ÍABï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½round[rad]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]ï¿½ï¿½ï¿½ï¿½B
 	vk = rotation( vk, B, round );
 
-	// ‰ñ“]‚µ‚½Œ‹‰Ê‚ªA”g”ƒxƒNƒgƒ‹‚Ì•ûŒü‚Å‚ ‚éB
+	// ï¿½ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê‚ï¿½ï¿½Aï¿½gï¿½ï¿½ï¿½xï¿½Nï¿½gï¿½ï¿½ï¿½Ì•ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½B
 	return initialize(r,vk);
 }
 
@@ -276,7 +282,7 @@ ray* ray::initialize(
 	return initialize( r, pitch, round );
 }
 
-// 1step‚ÌŽžŠÔ—Ê‚ðŒvŽZ /////////////////////////////////////////////////
+// 1stepï¿½ÌŽï¿½ï¿½Ô—Ê‚ï¿½ï¿½vï¿½Z /////////////////////////////////////////////////
 double ray::calc_dt(
 	const vector_pair&      rk,
 	const vector_pair&     drk,
@@ -284,7 +290,7 @@ double ray::calc_dt(
 ) const {
 	assert( m_dt_before > 0.0 );
 
-	// ‘OŒãƒxƒNƒgƒ‹’·‚Ì‹–—e”ÍˆÍ
+	// ï¿½Oï¿½ï¿½xï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Ì‹ï¿½ï¿½eï¿½Íˆï¿½
 	const double precision = m_wave.getPrecision();
 
 	// step.first == max, step.second == min;
@@ -292,9 +298,9 @@ double ray::calc_dt(
 	double        dt = m_dt_before;
 	const  double abs_drdt = norm_2(drk.first);
 
-	// dt = m_dt_before Žž‚Ì‘OŒãƒxƒNƒgƒ‹‚ð”äŠr‚µA
-	// ‹–—e”ÍˆÍ“à‚È‚çA‹–—e”ÍˆÍ‚¬‚è‚¬‚è‚Ü‚Ådt‚ð‚Ì‚Î‚µ
-	// ‹–—e”ÍˆÍŠO‚È‚çA‹–—e”ÍˆÍ‚Ü‚Ådt‚ð‚¯‚¸‚éB
+	// dt = m_dt_before ï¿½ï¿½ï¿½Ì‘Oï¿½ï¿½xï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½rï¿½ï¿½ï¿½A
+	// ï¿½ï¿½ï¿½eï¿½ÍˆÍ“ï¿½ï¿½È‚ï¿½Aï¿½ï¿½ï¿½eï¿½ÍˆÍ‚ï¿½ï¿½è‚¬ï¿½ï¿½Ü‚ï¿½dtï¿½ï¿½ï¿½Ì‚Î‚ï¿½
+	// ï¿½ï¿½ï¿½eï¿½ÍˆÍŠOï¿½È‚ï¿½Aï¿½ï¿½ï¿½eï¿½ÍˆÍ‚Ü‚ï¿½dtï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 	vector
 		r = rk.first  + dt*drk.first,
 		k = rk.second + dt*drk.second;
@@ -312,10 +318,10 @@ double ray::calc_dt(
 	   dt < step.first                                    &&
 	   i.numerator < i.denominator
 	){
-		// Œë·”ÍˆÍ“à‚Å‚ ‚èA‚©‚Â
-		// ‚Q”{‚ÌŽžŠÔ‚É‚µ‚Ä‚àAŽžŠÔ§ŒÀ“à•‹——£§ŒÀ“à‚Å‚ ‚é
-		// Œë·”ÍˆÍ“à‚Å‚ ‚Á‚Ä‚àAŽžŠÔ‚Æ‹——£§ŒÀ‚É‚©‚©‚é‚Ì‚Å‚ ‚ê‚Î
-		// ‚±‚êˆÈãŽžŠÔ‚ð‘‚â‚·‚±‚Æ‚Í‚Å‚«‚È‚¢B
+		// ï¿½ë·ï¿½ÍˆÍ“ï¿½ï¿½Å‚ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½
+		// ï¿½Qï¿½{ï¿½ÌŽï¿½ï¿½Ô‚É‚ï¿½ï¿½Ä‚ï¿½ï¿½Aï¿½ï¿½ï¿½Ôï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½
+		// ï¿½ë·ï¿½ÍˆÍ“ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Aï¿½ï¿½ï¿½Ô‚Æ‹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Å‚ï¿½ï¿½ï¿½ï¿½
+		// ï¿½ï¿½ï¿½ï¿½ÈãŽžï¿½Ô‚ð‘‚â‚·ï¿½ï¿½ï¿½Æ‚Í‚Å‚ï¿½ï¿½È‚ï¿½ï¿½B
 		do
 		{
 			out_i = i;
@@ -332,7 +338,7 @@ double ray::calc_dt(
 		} while (
 			1.0 - precision < ratio && ratio < 1.0 + precision &&
 			abs_drdt*dt < m_wave.getStepLength()               && 
-			dt < step.first  /* ŽžŠÔA‹——£‚ª”ÍˆÍ“à‚Å‚ ‚é*/     &&
+			dt < step.first  /* ï¿½ï¿½ï¿½ÔAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÍˆÍ“ï¿½ï¿½Å‚ï¿½ï¿½ï¿½*/     &&
 			i.numerator < i.denominator
 		);
 
@@ -341,8 +347,8 @@ double ray::calc_dt(
 		{ log("ray::calc_dt : out of dt range, over."); }
 #endif//RTC_RAYTRACE_RAY_LOGS_OUT_OF_TIME_RANGE
 
-		// dt ‚ª§ŒÀ‚ð’´‚¦‚½‚Æ‚±‚ë‚Å‹A‚Á‚Ä‚­‚é‚Ì‚Å
-		// dt/2‚É‚µ‚Ä§ŒÀ“à‚É–ß‚·B
+		// dt ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ð’´‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½Å‹Aï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Ì‚ï¿½
+		// dt/2ï¿½É‚ï¿½ï¿½Äï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É–ß‚ï¿½ï¿½B
 		dt *= 0.5;
 	}
 
@@ -350,18 +356,18 @@ double ray::calc_dt(
 	{
 		assert( dt >= step.second );
 
-		// ‹——£§ŒÀ‚ð’´‚¦‚Ä‚¢‚é‰Â”\«‚ª‚ ‚é‚©‚ç
-		// ‹——£§ŒÀ‚ð–ž‚½‚·Š‚Ü‚ÅŽžŠÔ‚ðŒ¸‚ç‚·B
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ð’´‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Â”\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚©ï¿½ï¿½
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ð–ž‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ÅŽï¿½ï¿½Ô‚ï¿½ï¿½ï¿½ï¿½ç‚·ï¿½B
 		while(
 			dt          > step.second           &&
 			abs_drdt*dt > m_wave.getStepLength()
 		){  dt *= 0.5; };
 
-		// Œë·”ÍˆÍŠO‚Å‚ ‚èA‚©‚Â
-		// 1/2”{‚ÌŽžŠÔ‚É‚µ‚Ä‚àAŽžŠÔ§ŒÀ“à‚Å‚ ‚éB
-		// Œë·”ÍˆÍ“à‚Å‚ ‚Á‚Ä‚àAŽžŠÔ§ŒÀ‚É‚©‚©‚é‚Ì‚Å‚ ‚ê‚Î
-		// ‚±‚êˆÈãŽžŠÔ‚ðŒ¸‚ç‚·‚±‚Æ‚Í‚Å‚«‚È‚¢B
-		// ŽžŠÔ‚ðŒ¸‚ç‚·ƒƒ\ƒbƒh‚È‚Ì‚ÅA‹——£§ŒÀ‚É‚©‚©‚é‚±‚Æ‚Í‚ ‚è“¾‚È‚¢B
+		// ï¿½ë·ï¿½ÍˆÍŠOï¿½Å‚ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½
+		// 1/2ï¿½{ï¿½ÌŽï¿½ï¿½Ô‚É‚ï¿½ï¿½Ä‚ï¿½ï¿½Aï¿½ï¿½ï¿½Ôï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½B
+		// ï¿½ë·ï¿½ÍˆÍ“ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Aï¿½ï¿½ï¿½Ôï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Å‚ï¿½ï¿½ï¿½ï¿½
+		// ï¿½ï¿½ï¿½ï¿½ÈãŽžï¿½Ô‚ï¿½ï¿½ï¿½ï¿½ç‚·ï¿½ï¿½ï¿½Æ‚Í‚Å‚ï¿½ï¿½È‚ï¿½ï¿½B
+		// ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½ï¿½ï¿½ç‚·ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½È‚Ì‚ÅAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½é‚±ï¿½Æ‚Í‚ï¿½ï¿½è“¾ï¿½È‚ï¿½ï¿½B
 		out_i = i;
 		do
 		{
@@ -389,7 +395,7 @@ double ray::calc_dt(
 				);
 #endif//RTC_RAYTRACE_ENABLE_EXCEPTION_WHEN_TIMESTEP_UNDERFLOW
 				
-				// ŽžŠÔ§ŒÀ‚©‚çŠO‚ê‚½‚Ì‚ÅA2”{‚É‚µ‚Ä•Ô‚·B
+				// ï¿½ï¿½ï¿½Ôï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ê‚½ï¿½Ì‚ÅA2ï¿½{ï¿½É‚ï¿½ï¿½Ä•Ô‚ï¿½ï¿½B
 				dt *= 2.0;
 				break;
 			}
@@ -399,8 +405,8 @@ double ray::calc_dt(
 			ratio < 1.0 - precision || 1.0 + precision < ratio
 		);
 
-		// dt ‚ªƒŒ[ƒg§ŒÀ‚É“ü‚Á‚½‚©AŽžŠÔ§ŒÀ‚©‚çŠO‚ê‚½‚Æ‚±‚ë‚Å‹A‚Á‚Ä‚­‚é
-		// dt ‚ð 0.5”{‚É‚·‚é‚ÆAƒŒ[ƒg§ŒÀ‚©‚çŠO‚ê‚é‰Â”\«‚ª‚ ‚éB
+		// dt ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Ôï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ê‚½ï¿½Æ‚ï¿½ï¿½ï¿½Å‹Aï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
+		// dt ï¿½ï¿½ 0.5ï¿½{ï¿½É‚ï¿½ï¿½ï¿½ÆAï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Â”\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 	}
 
 	assert( dt == std::min( step.first, std::max( step.second, dt ) ) );
@@ -408,7 +414,7 @@ double ray::calc_dt(
 }
 
 
-// ‹‚ß‚é”÷•ªŽ® ////////////////////////////////////////////////////////
+// ï¿½ï¿½ï¿½ß‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ////////////////////////////////////////////////////////
 double ray::calc_dGdw(
 	const ray::intermediate& i,
 	const vector&            r,
@@ -419,10 +425,10 @@ double ray::calc_dGdw(
 	const double first_term = -2*i.k2*(cnst::c*cnst::c)/(i.w2*i.w);
 
 	const double
-		// numerator_G()‚ðw‚Å”÷•ª‚µ‚½Œ‹‰Ê’l
+		// numerator_G()ï¿½ï¿½wï¿½Å”ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê’l
 		dnG_dw  = clearNaN( -4.0*(i.X2 - 2.0*i.X4)/i.w ),
 
-		// denominator_G()‚ðw‚Å”÷•ª‚µ‚½Œ‹‰Ê’l
+		// denominator_G()ï¿½ï¿½wï¿½Å”ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê’l
 		ddG_dw  = clearNaN(
 		          4*(i.X2/i.w)
 		        + 2*(i.Y2/i.w)*i.s2
@@ -452,7 +458,7 @@ vector ray::calc_dGdr(
 	const int    ox   = m_wave.LO_or_RX();
 	const vector dndx = c.getDerivativeDensity(r);
 
-	// ƒxƒNƒgƒ‹”÷•ª‚È‚Ì‚ÅAŠe¬•ª–ˆ‚É”÷•ª‚µ‚½Œ‹‰Ê‚ðŠi”[‚·‚éB
+	// ï¿½xï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚Ì‚ÅAï¿½eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É”ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê‚ï¿½ï¿½iï¿½[ï¿½ï¿½ï¿½ï¿½B
 	for( int n=0; n<3; ++n )
 	{
 		const double
@@ -537,14 +543,14 @@ vector ray::calc_dGdk(
 }
 
 // =====================================================================
-double ray::numerator_G(        // ŠÖ”G‚Ì‘æ‚Q€‚Ì•ªŽq‚Ì’l‚ð•Ô‚·B
+double ray::numerator_G(        // ï¿½Öï¿½Gï¿½Ì‘ï¿½Qï¿½ï¿½ï¿½Ì•ï¿½ï¿½qï¿½Ì’lï¿½ï¿½Ô‚ï¿½ï¿½B
 	const ray::intermediate& i,
 	const vector&            r
 ) const {
 	return clearNaN( 2 * i.X2 * i.iX2 );
 }
 
-double ray::denominator_G(      // ŠÖ”G‚Ì‘æ‚Q€‚Ì•ª•ê‚Ì’l‚ð•Ô‚·B
+double ray::denominator_G(      // ï¿½Öï¿½Gï¿½Ì‘ï¿½Qï¿½ï¿½ï¿½Ì•ï¿½ï¿½ï¿½Ì’lï¿½ï¿½Ô‚ï¿½ï¿½B
 	const ray::intermediate& i,
 	const vector&            r
 ) const {

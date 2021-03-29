@@ -1,15 +1,16 @@
-for ORDER in 7
+for ORDER in 4
+
+OR = ORDER - 3
+
+do
+
+
+for COE in 1 2
 
 
 do
 
-
-for COE in 1 2 3 4 5 6 7 8 9
-
-
-do
-
-for DEGREE in 300 305 310 315 320 325 330
+for DEGREE in 330 
 
 do
 
@@ -45,12 +46,10 @@ TIME="0:0.0"     # hour:minutes.sec
 ## 波動特性を設定 ##
 FREQ=1e6       # 周波数[Hz]
 MODE="LO"       # 波動モード(LO|RX)
-RAY_L=5e7     # トレースする最大の光路長
+RAY_L=4e6     # トレースする最大の光路長
 PITCH=${DEGREE} # 磁場に対するピッチ角
-
-SEGMENT=50000    # 出力する光路上の点の数
-MAX_STEP=50000    # トレース・ステップの最大数
-
+SEGMENT=4e${OR}    # 出力する光路上の点の数
+MAX_STEP=4e${OR}    # トレース・ステップの最大数
 STEP_LENGTH=10000000  # １ステップで進む最大の光路長 (1step毎に進める最大長を[m]で指定する)
 PRECISION="10000"  # １ステップ間のベクトル誤差の許容率
 TIME_RANGE="${COE}e-${ORDER}:1e-13"  # １ステップ間の時間分解能レンジ  (1step毎に進める時間の最大値・最小値を指定する。)
@@ -63,7 +62,7 @@ CAVITY_LIST=(                      \
 ) # cavityの数だけオプションを指定
 
 ## 出力ファイル名を指定する。
-OUTPUT="ray-P${PLASMA}-M${MAGNET}-${PLANET}-${MODE}-Z${SZ}-FR${FREQ}-TIME-RANGE${TIME_RANGE}-PITCH${PITCH}"
+OUTPUT="ray-P${PLASMA}-M${MAGNET}-${PLANET}-${MODE}-Z${SZ}-FR${FREQ}-TIME-RANGE${TIME_RANGE}"
 ##OUTPUT="ray-P${PLASMA}-M${MAGNET}-${PLANET}-${MODE}-X${SX}-FR${FREQ}-PITCH${PITCH}"
 LOG="${0}.log"
 
