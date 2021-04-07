@@ -1,3 +1,6 @@
+for HIG in 100 200 300 400 500 600 700 800 900 1000
+
+do
 
 RAYTRACE='./testing'
 
@@ -16,7 +19,7 @@ COORD="euclid" # (euclid|polar)
 
 SX=-1000
 SY=0
-SZ=300
+SZ=${HIG}
 
 
 ## モデルを選択 ##
@@ -101,3 +104,5 @@ send_mail()
 
 	echo "END (${OUTPUT}) at " `date` >> ${LOG}
 	send_mail
+
+done

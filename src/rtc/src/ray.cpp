@@ -172,11 +172,10 @@ void ray::checkState(
 			log("core::ray : The refractive index reached outside the range.")
 	);
 
-	if((std::sqrt((pow(r(0),2.0))+(pow(r(1),2.0))+(pow(r(2)+1.601e6,2.0)))) < 1.601e6)
+    if(reflection(i,r)==1)
         throw std::range_error(
             log("enter solid part.")
     );
-
 
 }
 
@@ -564,3 +563,18 @@ double ray::denominator_G(      // ŠÖ”G‚Ì‘æ‚Q€‚Ì•ª•ê‚Ì’l‚ð•Ô‚·B
 	);
 }
 
+int ray::reflection(
+	const ray::intermediate& i,
+	const vector&            r
+) const{
+	//double Ref = std::sqrt((pow(r(0),2.0))+(pow(r(1),2.0))+(pow(r(2)+1.601e6,2.0)))-1.601e6 ;
+	double Ref = r(2);
+	if (Ref > 0)
+		{
+		return 0;
+		}
+	else
+		{
+		return 1;
+		}
+}

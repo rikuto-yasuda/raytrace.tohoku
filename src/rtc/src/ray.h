@@ -171,6 +171,10 @@ namespace rtc { // -----------------------------------------------------
 			const intermediate& i,
 			const vector&       r
 		) const; // 関数Gの第２項の分母の値を返す。
+		int reflection(
+			const intermediate& i,
+			const vector&       r
+		) const;
 
 		// エラーチェック ///////////////////////
 		void checkState(
