@@ -187,6 +187,9 @@ vector cosmos::getDerivativeDensity( const vector& r ) const
 double cosmos::getPlasmaDensity( const vector& r ) const
 { return m_planet->getPlasma()(r); }
 
+double cosmos::getHight( const vector& r ) const
+{ return r(2); }
+
 
 // ƒ‚ƒfƒ‹‚©‚çŒvZ‚µ‚ÄŒ‹‰Ê‚ğ•Ô‚·–â‚¢‡‚í‚¹ //////////////////////////////
 double cosmos::getSquaredPlasmaFreq( const vector& r ) const

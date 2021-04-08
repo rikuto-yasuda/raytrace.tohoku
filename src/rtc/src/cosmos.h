@@ -94,7 +94,10 @@ namespace rtc {
 		// 位置rでのプラズマ密度を返す。
 		double getPlasmaDensity( const vector& r ) const;
 		
-		// 位置rでのプラズマ角周波数の二乗値を返す。
+		// 位置rでの標高。
+		double getHight( const vector& r ) const;
+		
+		// 位置rでのプラズマ角周波数の二乗値をHight返す。
 		double getSquaredPlasmaFreq( const vector& r ) const;
 
 		// 位置rでのサイクロトロン角周波数の二乗値を返す。
