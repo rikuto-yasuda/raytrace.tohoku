@@ -570,7 +570,6 @@ int ray::reflection (
 	const cosmos& c = getCosmos();
 	double Ref = c.getHight(r);
 
-	//double Ref = std::sqrt((pow(r(0),2.0))+(pow(r(1),2.0))+(pow(r(2)+1.601e6,2.0)))-1.601e6 ;
 	if (Ref > 0)
 		{
 		return 0;
