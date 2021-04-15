@@ -187,8 +187,12 @@ vector cosmos::getDerivativeDensity( const vector& r ) const
 double cosmos::getPlasmaDensity( const vector& r ) const
 { return m_planet->getPlasma()(r); }
 
-double cosmos::getHight( const vector& r ) const
-{ return r(2); }
+double cosmos::getHight( const vector& r ) const   //////反射用機能　標高を入力（固体・プラズマ境界面からの距離を導出）　単位はm  
+{ 
+	double h = r(2)-1.0e4;  ///z=0の平面
+///	double h = std::sqrt((pow(r(0),2.0))+(pow(r(1),2.0))+(pow(r(2)+1.601e6,2.0))) - 1.601e6;　// エウロパ表面（完全球）
+	return h; 
+}
 
 
 // モデルから計算して結果を返す問い合わせ //////////////////////////////

@@ -1,7 +1,7 @@
 # Makefile for GCC g++ ###########################
-all: library models planets
+all: clean library models planets testing
 
-testing: all
+testing: lib
 	make -C testing -f makefile.gcc
 
 library: lib

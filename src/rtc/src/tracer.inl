@@ -38,6 +38,12 @@ double ray::take_a_step()
 	r += m_drk.first;
 	k += m_drk.second;
 
+	if (r(2)<0)
+	{
+		r(2)=0;
+		k(2)=-k(2);
+	}
+
 	// 新しい点での光の状態をチェックする。
 	checkState(m_im,r,k);
 
