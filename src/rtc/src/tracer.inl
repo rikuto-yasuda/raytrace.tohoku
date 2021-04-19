@@ -38,16 +38,34 @@ double ray::take_a_step()
 	r += m_drk.first;
 	k += m_drk.second;
 
-	if (r(2)<0)
+	// 新しい点での光の状態をチェックする。
+	checkState(m_im,m_drk,r,k);
+
+    if(reflectioncheck (r,m_drk)==1)
 	{
-		r(2)=0;
-		k(2)=-k(2);
+		r -= m_drk.first;  //r,k = m_rk元に戻る
+		k -= m_drk.second;
+		m_drk.first  /= dt;
+		m_drk.second /= dt;
+
+		const double dt = reflect_dt(m_rk,m_drk,m_im);
+
+		m_drk.first  *= dt;
+		m_drk.second *= dt;
+		r += m_drk.first;
+		k += m_drk.second;
+
+		const vector n = reflect_n(m_rk,m_im);
+		k = k-2*inner_prod(n,k)*n;
 	}
 
-	// 新しい点での光の状態をチェックする。
-	checkState(m_im,r,k);
+	return dt; 
 
-	return dt;
+	
+	//mainloopで呼び出されるもの
+	//dt=calc(), getDeltaR()=m_dkr.first, getDeltaK()=m_dkr.second
+	//getR()=m_rk.first, getK()=m_rk.second ここで参照されているので値の更新が可能に
+	//checkstateで固体部の判断をするためこれらの値はdtを返す前に変更する必要あり
 }
 
 }// namespace rtc

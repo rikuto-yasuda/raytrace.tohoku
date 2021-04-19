@@ -134,6 +134,7 @@ void ray::update_intermediate(
 // 光線の状態チェック //////////////////////////////////////////////////
 void ray::checkState(
 	const ray::intermediate& i,
+	const vector_pair& drk,
 	const vector& r,
 	const vector& k
 ) const {
@@ -172,11 +173,6 @@ void ray::checkState(
 			log("core::ray : The refractive index reached outside the range.")
 	);
 
-    if(reflection(i,r)==1)
-        throw std::range_error(
-            log("enter solid part.")
-    );
-
 }
 
 // 波数ベクトルの初期値 ////////////////////////////////////////////////
@@ -196,7 +192,7 @@ ray* ray::initialize(
 
 	// initializeで m_im も初期化しなければならない。
 	update_intermediate(m_im,r,k_new);
-	checkState(m_im,r,k_new);
+	checkState(m_im,m_drk,r,k_new);
 	
 	// initializeで、m_dt_beforeも初期化しなければならない。
 	m_dt_before = getWaveParam().getTimeStep().second;
@@ -563,12 +559,14 @@ double ray::denominator_G(      // 関数Gの第２項の分母の値を返す。
 	);
 }
 
-int ray::reflection (
-	const ray::intermediate& i,
-	const vector&            r
+int ray::reflectioncheck (
+	const vector&        r,
+	const vector_pair& drk	
 ) const{
 	const cosmos& c = getCosmos();
-	double Ref = c.getHight(r);
+	double Ref1 = c.getHight(r);
+	double Ref2 = c.getHight(r-drk.first);
+	double Ref = Ref1 *Ref2;
 
 	if (Ref > 0)
 		{
@@ -578,4 +576,71 @@ int ray::reflection (
 		{
 		return 1;
 		}
+}
+
+double ray::reflect_dt (
+	const vector_pair      rk,
+	const vector_pair     drk,
+	ray::intermediate&   out_i
+) const{
+	const cosmos& c = getCosmos();
+	double        dt1 = 0.0;
+	double        dt2 = m_dt_before;
+	double Hight1 = std::fabs(c.getHight(rk.first));
+
+	while (Hight1 > 0.0001)
+	{
+		double ddt  = (dt1+dt2)/2;
+		vector point1 = rk.first + drk.first * dt1;
+		vector point2 = rk.first + drk.first * dt2;
+		vector point3 = rk.first + drk.first * ddt;
+
+		if (c.getHight(point1) * c.getHight(point3) > 0)
+			{
+			dt1 = ddt;
+			}
+		if (c.getHight(point2) * c.getHight(point3) > 0)
+			{
+			dt2 = ddt;
+			}
+		point1 = rk.first + drk.first * dt1;
+		Hight1 = std::fabs(c.getHight(point1));
+	}
+		return dt1;
+}
+
+
+vector ray::reflect_n (
+	const vector_pair      rk,
+	ray::intermediate&   out_i
+) const{
+	const cosmos& c = getCosmos();
+	vector refpoint = rk.first;
+	vector dx(3);
+	dx[0] = 0.5;
+	dx[1] = 0.0;
+	dx[2] = 0.0;
+	
+	vector dy(3);
+	dy[0] = 0.0;
+	dy[1] = 0.5;
+	dy[2] = 0.0;	
+
+	vector dz(3);
+	dz[0] = 0.0;
+	dz[1] = 0.0;
+	dz[2] = 0.5;
+
+	double dfdx = c.getHight(refpoint + dx) - c.getHight(refpoint - dx);
+	double dfdy = c.getHight(refpoint + dy) - c.getHight(refpoint - dy); 
+	double dfdz = c.getHight(refpoint + dz) - c.getHight(refpoint - dz);
+
+	vector n(3);
+	n[0] = dfdx;
+	n[1] = dfdy;
+	n[2] = dfdz;
+
+    double length = norm_2(n);
+	n = n / length;
+	return n;
 }
