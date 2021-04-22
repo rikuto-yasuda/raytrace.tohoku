@@ -41,7 +41,7 @@ double ray::take_a_step()
 	// 新しい点での光の状態をチェックする。
 	checkState(m_im,m_drk,r,k);
 
-    if(reflectioncheck (r,m_drk)==1)
+    if(checkReflection(r,m_drk)==1)
 	{
 		r -= m_drk.first;  //r,k = m_rk元に戻る
 		k -= m_drk.second;

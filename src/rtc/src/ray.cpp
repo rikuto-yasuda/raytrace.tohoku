@@ -172,7 +172,26 @@ void ray::checkState(
 		throw std::runtime_error(
 			log("core::ray : The refractive index reached outside the range.")
 	);
+}
 
+// 光線の反射の有無をチェック //////////////////////////////////////////////////
+int ray::checkReflection (
+	const vector&        r,
+	const vector_pair& drk	
+) const{
+	const cosmos& c = getCosmos();
+	double Ref1 = c.getHight(r);
+	double Ref2 = c.getHight(r-drk.first);
+	double Ref = Ref1 *Ref2;
+
+	if (Ref > 0)
+		{
+		return 0;
+		}
+	else
+		{
+		return 1;
+		}
 }
 
 // 波数ベクトルの初期値 ////////////////////////////////////////////////
@@ -559,25 +578,6 @@ double ray::denominator_G(      // 関数Gの第２項の分母の値を返す。
 	);
 }
 
-int ray::reflectioncheck (
-	const vector&        r,
-	const vector_pair& drk	
-) const{
-	const cosmos& c = getCosmos();
-	double Ref1 = c.getHight(r);
-	double Ref2 = c.getHight(r-drk.first);
-	double Ref = Ref1 *Ref2;
-
-	if (Ref > 0)
-		{
-		return 0;
-		}
-	else
-		{
-		return 1;
-		}
-}
-
 double ray::reflect_dt (
 	const vector_pair      rk,
 	const vector_pair     drk,
@@ -588,7 +588,7 @@ double ray::reflect_dt (
 	double        dt2 = m_dt_before;
 	double Hight1 = std::fabs(c.getHight(rk.first));
 
-	while (Hight1 > 0.0001)
+	while (Hight1 > 0.001)
 	{
 		double ddt  = (dt1+dt2)/2;
 		vector point1 = rk.first + drk.first * dt1;

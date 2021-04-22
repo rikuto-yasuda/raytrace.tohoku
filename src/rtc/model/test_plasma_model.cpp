@@ -12,10 +12,11 @@ double plasma::test_null_plasma::getDensity( const vector& point ) const
 
 double plasma::test_simple::getDensity( const vector& point ) const               ///////////////新しいプラズマモデル（z軸方向にexpで減少）
 {
-	const double
+/*	const double
 		h = std::fabs(0.5e5*point(2));
 
 	return h;
+*/	return 1.0e3;
 }
 
 

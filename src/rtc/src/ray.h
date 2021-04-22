@@ -172,11 +172,6 @@ namespace rtc { // -----------------------------------------------------
 			const vector&       r
 		) const; // 関数Gの第２項の分母の値を返す。
 
-		int reflectioncheck(
-			const vector&       r,
-			const vector_pair& drk
-		) const;
-
 		double reflect_dt(
 			const vector_pair rk,
 			const vector_pair drk,
@@ -195,6 +190,11 @@ namespace rtc { // -----------------------------------------------------
 			const vector_pair& drk,
 			const vector& r,
 			const vector& k
+		) const;
+
+		int checkReflection(
+			const vector&       r,
+			const vector_pair& drk
 		) const;
 
 		// ログメッセージの挿入 /////////////////
