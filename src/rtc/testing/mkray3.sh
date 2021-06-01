@@ -1,4 +1,4 @@
-for HIG in 100 200 300 400 500 600 700 800 900 1000
+for HIG in 100 200 300 400 500 600 700 800 900 1000 1100 1200 1300
 
 do
 
@@ -17,13 +17,13 @@ COORD="euclid" # (euclid|polar)
 #SZ=2e6         # (source.z|altitude)
 #SZ=1.1e8        # (source.z|altitude)
 
-SX=-1000
+SX=-1500
 SY=0
 SZ=${HIG}
 
 
 ## モデルを選択 ##
-PLASMA="europa_nonplume"    #(null|test_null|simple|test_simple|europa_plume|europa_nonplume|sato|nsumei|devine_garrett)
+PLASMA="europa_plume"    #(null|test_null|simple|test_simple|europa_plume|europa_nonplume|sato|nsumei|devine_garrett)
 MAGNET="test_simple"         #(null|test_null|simple|test_simple|igrf|igrf4|vip4)
 PLANET="benchmark"        #(earth(?)|jupiter|benchmark)
 
@@ -32,10 +32,10 @@ DATE="2000/1/1"  # year/month/day
 TIME="0:0.0"     # hour:minutes.sec
 
 ## 波動特性を設定 ##
-FREQ=1e6       # 周波数[Hz]
+FREQ=5e6       # 周波数[Hz]
 MODE="LO"       # 波動モード(LO|RX)
 RAY_L=4e6     # トレースする最大の光路長
-PITCH=45        # 磁場に対するピッチ角
+PITCH=30        # 磁場に対するピッチ角
 SEGMENT=500     # 出力する光路上の点の数
 MAX_STEP=100000 # トレース・ステップの最大数
 STEP_LENGTH=100  # １ステップで進む最大の光路長 (1step毎に進める最大長を[m]で指定する)

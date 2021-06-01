@@ -40,7 +40,7 @@ double ray::take_a_step()
 
 	// 新しい点での光の状態をチェックする。
 	checkState(m_im,m_drk,r,k);
-
+/*
     if(checkReflection(r,m_drk)==1)
 	{
 		r -= m_drk.first;  //r,k = m_rk元に戻る
@@ -58,7 +58,7 @@ double ray::take_a_step()
 		const vector n = reflect_n(m_rk,m_im);
 		k = k-2*inner_prod(n,k)*n;
 	}
-
+*/
 	return dt; 
 
 	

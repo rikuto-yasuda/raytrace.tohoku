@@ -1,5 +1,5 @@
 # Makefile for GCC g++ ###########################
-all: clean library testing
+all: clean library models planets testing
 
 testing: lib
 	make -C testing -f makefile.gcc
@@ -18,6 +18,6 @@ lib:
 
 clean:
 	make -C src -f makefile.gcc clean
-#	make -C model -f makefile.gcc clean
-#	make -C planet -f makefile.gcc clean
+	make -C model -f makefile.gcc clean
+	make -C planet -f makefile.gcc clean
 	make -C testing -f makefile.gcc clean

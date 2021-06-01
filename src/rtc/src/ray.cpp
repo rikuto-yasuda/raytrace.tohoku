@@ -172,6 +172,12 @@ void ray::checkState(
 		throw std::runtime_error(
 			log("core::ray : The refractive index reached outside the range.")
 	);
+
+	if( ray::checkReflection(r,drk) == 1 )
+		throw std::range_error(
+			log("enter solid part.")
+	);
+
 }
 
 // 光線の反射の有無をチェック //////////////////////////////////////////////////
