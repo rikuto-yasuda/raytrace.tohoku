@@ -172,12 +172,13 @@ void ray::checkState(
 		throw std::runtime_error(
 			log("core::ray : The refractive index reached outside the range.")
 	);
-
+	//掩蔽シミュレーションの場合以下利用 cf)tracer.inl
+/*
 	if( ray::checkReflection(r,drk) == 1 )
 		throw std::range_error(
 			log("enter solid part.")
 	);
-
+*/
 }
 
 // 光線の反射の有無をチェック //////////////////////////////////////////////////

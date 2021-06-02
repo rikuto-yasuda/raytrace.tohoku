@@ -40,25 +40,33 @@ double ray::take_a_step()
 
 	// 新しい点での光の状態をチェックする。
 	checkState(m_im,m_drk,r,k);
-/*
+
+	//反射シミュレーションの場合以下利用 cf)ray.cpp
+
     if(checkReflection(r,m_drk)==1)
 	{
-		r -= m_drk.first;  //r,k = m_rk元に戻る
-		k -= m_drk.second;
-		m_drk.first  /= dt;
-		m_drk.second /= dt;
+		struct timeval _time;
+		gettimeofday(&_time, NULL);
+		srand(_time.tv_usec);
 
-		const double dt = reflect_dt(m_rk,m_drk,m_im);
+		if((rand()%1000)/1000.0 < 0.2) //反射する可能性を記入(not 百分率)
+		{
+			r -= m_drk.first;  //r,k = m_rk元に戻る
+			k -= m_drk.second;
+			m_drk.first  /= dt;
+			m_drk.second /= dt;
 
-		m_drk.first  *= dt;
-		m_drk.second *= dt;
-		r += m_drk.first;
-		k += m_drk.second;
+			const double dt = reflect_dt(m_rk,m_drk,m_im);
 
-		const vector n = reflect_n(m_rk,m_im);
-		k = k-2*inner_prod(n,k)*n;
+			m_drk.first  *= dt;
+			m_drk.second *= dt;
+			r += m_drk.first;
+			k += m_drk.second;
+
+			const vector n = reflect_n(m_rk,m_im);
+			k = k-2*inner_prod(n,k)*n;
+		}
 	}
-*/
 	return dt; 
 
 	

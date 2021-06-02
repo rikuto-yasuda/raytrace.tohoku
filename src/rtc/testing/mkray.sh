@@ -20,7 +20,7 @@ SZ=300
 
 
 ## モデルを選択 ##
-PLASMA="europa_nonplume"    #(null|test_null|simple|test_simple|europa_plume|europa_nonplume|sato|nsumei|devine_garrett)
+PLASMA="test_simple"    #(null|test_null|simple|test_simple|europa_plume|europa_nonplume|sato|nsumei|devine_garrett)
 MAGNET="test_simple"         #(null|test_null|simple|test_simple|igrf|igrf4|vip4)
 PLANET="benchmark"        #(earth(?)|jupiter|benchmark)
 
@@ -33,7 +33,7 @@ FREQ=1e6       # 周波数[Hz]
 MODE="LO"       # 波動モード(LO|RX)
 RAY_L=4e6     # トレースする最大の光路長
 PITCH=60        # 磁場に対するピッチ角
-SEGMENT=100000   # 出力する光路上の点の数
+SEGMENT=1000   # 出力する光路上の点の数
 MAX_STEP=100000 # トレース・ステップの最大数
 STEP_LENGTH=100  # １ステップで進む最大の光路長 (1step毎に進める最大長を[m]で指定する)
 PRECISION="10000"  # １ステップ間のベクトル誤差の許容率

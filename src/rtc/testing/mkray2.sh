@@ -1,9 +1,9 @@
-for ORDER in 6
+for ORDER in 1 2 3 4 5 6 7 8 9 0 
 
 do
 
 
-for COE in 1 2 3 4 5 6 7 8 9
+for COE in 0 1 2 3 4 5 6 7 8 9
 
 
 do
@@ -23,9 +23,9 @@ COORD="euclid" # (euclid|polar)
 #SZ=2e6         # (source.z|altitude)
 #SZ=1.1e8        # (source.z|altitude)
 
-SX=0
+SX=${COE}.${ORDER}
 SY=0
-SZ=1
+SZ=5
 
 
 ## モデルを選択 ##
@@ -40,13 +40,13 @@ TIME="0:0.0"     # hour:minutes.sec
 ## 波動特性を設定 ##
 FREQ=1e6       # 周波数[Hz]
 MODE="LO"       # 波動モード(LO|RX)
-RAY_L=4e6     # トレースする最大の光路長
-PITCH=330        # 磁場に対するピッチ角
-SEGMENT=3000     # 出力する光路上の点の数
-MAX_STEP=3000   # トレース・ステップの最大数
-STEP_LENGTH=10000000  # １ステップで進む最大の光路長 (1step毎に進める最大長を[m]で指定する)
+RAY_L=30000     # トレースする最大の光路長
+PITCH=80        # 磁場に対するピッチ角
+SEGMENT=100     # 出力する光路上の点の数
+MAX_STEP=100   # トレース・ステップの最大数
+STEP_LENGTH=100000  # １ステップで進む最大の光路長 (1step毎に進める最大長を[m]で指定する)
 PRECISION="10000"  # １ステップ間のベクトル誤差の許容率
-TIME_RANGE="${COE}e-${ORDER}:1e-13"  # １ステップ間の時間分解能レンジ  (1step毎に進める時間の最大値・最小値を指定する。)
+TIME_RANGE="1e-6:1e-13"  # １ステップ間の時間分解能レンジ  (1step毎に進める時間の最大値・最小値を指定する。)
 
 ## plasma cavity ##
 # --cavity [fp/fc]/[ilat]:[ilat range]/[mlt]:[mlt range]/[height upper]:[height bottom]
@@ -56,7 +56,7 @@ CAVITY_LIST=(                      \
 ) # cavityの数だけオプションを指定
 
 ## 出力ファイル名を指定する。
-OUTPUT="ray-P${PLASMA}-M${MAGNET}-${PLANET}-${MODE}-Z${SZ}-FR${FREQ}-TIME-RANGE${TIME_RANGE}"
+OUTPUT="ray-P${PLASMA}-M${MAGNET}-${PLANET}-${MODE}-X${SX}"
 ##OUTPUT="ray-P${PLASMA}-M${MAGNET}-${PLANET}-${MODE}-X${SX}-FR${FREQ}-PITCH${PITCH}"
 LOG="${0}.log"
 
